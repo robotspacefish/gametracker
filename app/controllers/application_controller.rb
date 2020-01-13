@@ -5,10 +5,61 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "s&M9V4CUEhoRu&hbfKdi#S70oXIx#EpiV%r%2ZH1m9ZI8%848Shcttd3xW#K"
   end
 
   get "/" do
-    erb :index
+    if logged_in?
+      redirect "/users/#{current_user.slug}"
+    else
+      erb :index
+    end
   end
 
+  get '/login' do
+    if !logged_in?
+      erb :'/sessions/login'
+    else
+      redirect "/users/#{current_user.slug}"
+    end
+  end
+
+  post '/login' do
+    login(params[:user])
+    redirect "/users/#{current_user.slug}"
+  end
+
+  get '/logout' do
+    logout!
+    redirect '/'
+  end
+
+  get '/signup' do
+    erb :'/sessions/signup'
+  end
+
+  helpers do
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+      @current_user ||= User.find_by(username: session[:username]) if session[:username]
+    end
+
+    def login(params)
+      user = User.find_by(username: params[:username])
+
+      if user && user.authenticate(params[:password])
+        session[:username] = user.username
+      else
+        redirect '/login'
+      end
+    end
+
+    def logout!
+      session.clear
+    end
+  end
 end
