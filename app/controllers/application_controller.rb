@@ -20,7 +20,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'/sessions/login'
+    if !logged_in?
+      erb :'/sessions/login'
+    else
+      redirect "/users/#{current_user.slug}"
+    end
+  end
+
+  post '/login' do
+    login(params[:user])
+    redirect "/users/#{current_user.slug}"
   end
 
   get '/logout' do
