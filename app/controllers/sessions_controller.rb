@@ -3,13 +3,13 @@ class SessionsController < ApplicationController
     if !logged_in?
       erb :'/sessions/login'
     else
-      redirect "/users/#{current_user.slug}"
+      redirect "#{current_user_page}"
     end
   end
 
   post '/login' do
     login(params[:user])
-    redirect "/users/#{current_user.slug}"
+    redirect "#{current_user_page}"
   end
 
   get '/logout' do
@@ -18,6 +18,10 @@ class SessionsController < ApplicationController
   end
 
   get '/signup' do
-    erb :'/sessions/signup'
+    if !logged_in?
+      erb :'/sessions/signup'
+    else
+      redirect "#{current_user_page}"
+    end
   end
 end
