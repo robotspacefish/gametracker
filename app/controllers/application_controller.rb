@@ -11,9 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      # TODO
-      user = User.create(username: "jess") # for testing
-      redirect "/users/#{user.slug}" # replace with current_user.slug
+      redirect "/users/#{current_user.slug}"
     else
       erb :index
     end
