@@ -24,4 +24,23 @@ class SessionsController < ApplicationController
       redirect current_user_page
     end
   end
+
+  post '/signup' do
+    username = nil
+    if valid_username?(params[:user][:username]) &&
+      !username_taken?(params[:user][:username]) &&
+      valid_password?(params[:user][:password])
+      user = User.create(
+        username: params[:user][:username],
+        password: params[:user][:username]
+      )
+
+      session[:username] = user.username
+
+      redirect current_user_page
+    else
+      # TODO error
+      redirect '/signup'
+    end
+  end
 end
