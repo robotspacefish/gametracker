@@ -56,7 +56,7 @@ class ApplicationController < Sinatra::Base
       !password.match?(/\s/)
     end
 
-    def username_not_taken?(username)
+    def username_taken?(username)
       !!User.find_by(username: username)
     end
   end
