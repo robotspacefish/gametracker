@@ -19,6 +19,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    logout!
+    redirect '/'
+  end
+
   helpers do
     def logged_in?
       !!current_user
