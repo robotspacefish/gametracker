@@ -1,1 +1,10 @@
-<h1>GameTracker<h1>
+<nav>
+  <!-- todo links for game stuff -->
+
+  <% if !logged_in? %>
+    <div>
+      <a href="/login">Log in</a>
+      <a href="/signup">Sign up</a>
+    </div>
+  <% end %>
+</nav>
