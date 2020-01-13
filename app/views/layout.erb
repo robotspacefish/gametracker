@@ -18,6 +18,13 @@
         <header>
           <h1>GameTracker</h1>
           <!-- todo nav goes here -->
+          <nav>
+            <form action="/search" method="POST">
+              <label>Search: </label>
+              <input type="search" name="search" placeholder="title ex: Mass Effect">
+              <input type="submit" value="Search" class="btn btn-search">
+            </form>
+          </nav>
         </header>
 
         <%= yield %>
