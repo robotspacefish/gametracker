@@ -4,6 +4,10 @@ class GamesController < ApplicationController
     erb :'games/index'
   end
 
+  get '/games/new' do
+    erb :'/games/new'
+  end
+
   get '/games/:slug' do
     @game = Game.find_by_slug(params[:slug])
 
