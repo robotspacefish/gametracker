@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       else
         @msg = "User #{params[:slug]} does not exist. <a href=\"/signup\">Would you like to make an account with this name?</a></h2>"
       end
-      erb :'/users/error'
+      erb :error
     end
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if !logged_in?
       redirect '/'
     elsif current_user.slug != @slug
-      erb :'/users/error'
+      erb :error
     else
       erb :'/users/account'
     end
