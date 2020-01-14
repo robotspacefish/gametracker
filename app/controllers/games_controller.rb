@@ -35,6 +35,7 @@ class GamesController < ApplicationController
         else
             # if it doesn't exist, create it & add to all games
             # and add to current user's library
+            params[:game][:title] = title.split(" ").each {|word| word.capitalize! }.join(" ")
             @game = current_user.games.build(params[:game])
             if current_user.save
               redirect to current_user_page
