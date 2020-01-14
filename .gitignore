@@ -1,3 +1,7 @@
 keys.rb
 NOTES.md
 .DS_Store
+
+db/development.sqlite
+
+db/test.sqlite

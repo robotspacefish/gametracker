@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if logged_in? && current_user.slug == params[:slug]
       erb :'/users/show'
     else
+      @slug = params[:slug]
       erb :'/users/error'
     end
   end

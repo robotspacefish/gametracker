@@ -17,6 +17,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  not_found do
+    'This is nowhere to be found.'
+  end
+
   helpers do
     def logged_in?
       !!current_user

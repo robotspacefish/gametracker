@@ -1,0 +1,19 @@
+<h1>Add Custom Game</h1>
+<form action="/games" method="POST">
+  <div>
+    <label>Title</label>
+    <input type="text" name="game[title]" required>
+  </div>
+
+  <div>
+    <label>Cover Art URL</label>
+    <input type="text" name="game[cover_art]">
+  </div>
+
+  <div>
+    <label>Release Date</label>
+    <input type="datetime" name="game[release_date]">
+  </div>
+
+  <input type="submit" value="Add Game" class="btn btn-submit">
+</form>
