@@ -5,7 +5,11 @@ class GamesController < ApplicationController
   end
 
   get '/games/new' do
-    erb :'/games/new'
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'/games/new'
+    end
   end
 
   post '/games/' do
