@@ -1,0 +1,19 @@
+<form action="/users/<%=current_user.slug %>/account" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <div>
+    <label>Change Username</label>
+    <input type="text" name="user[username]" value="<%= current_user.username%>">
+  </div>
+
+  <div>
+    <label>Change Password</label>
+    <input type="password" name="user[password]">
+  </div>
+
+  <input type="submit" value="Update Account Info">
+</form>
+
+<form action="/users/<%=current_user.slug %>/account" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Account">
+</form>
