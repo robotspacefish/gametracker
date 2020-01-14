@@ -1,1 +1,5 @@
-<h2>You must be logged in as <%= @user.username %> to view this page</h2>
+<% if @user %>
+  <h2>You must be logged in as <%= @user.username %> to view this page.</h2>
+<% else %>
+   <h2>User <%= @slug %> does not exist. <a href="/signup">Would you like to make an account with this name?</a></h2>
+<% end %>
