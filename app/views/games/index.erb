@@ -6,7 +6,8 @@
     <% @games.each do |game| %>
       <div class="game">
       <!-- TODO  add game form -->
-        <%= game.title %>
+      <!-- TODO show game image -->
+        <a href="games/<%= game.slug %>"><%= game.title %></a>
       </div>
     <% end %>
   </div>
