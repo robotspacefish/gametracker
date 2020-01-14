@@ -16,14 +16,21 @@ class GamesController < ApplicationController
     end
   end
 
-  post '/games/' do
-    # TODOs
-    # check for current user logged in
-    # check db for game
-    # if it doesn't exist, create it & add to all games
-    # add to current user's library
-    # reroute to
+  post '/games' do
+    if !logged_in?
+      redirect '/login'
+    else
+      # check db for game
+      @existing_game = Game.find_by(title: params[:game][:title])
+      if @existing_game
+        @user_has_game = !!current_user.games.find_by(id: @existing_game.id)
+        erb :'games/add_existing_game'
+      else
+
+      end
+    end
   end
+
 
   get '/games/:slug' do
     @game = Game.find_by_slug(params[:slug])
