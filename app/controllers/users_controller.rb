@@ -9,4 +9,12 @@ class UsersController < ApplicationController
       erb :'/users/error'
     end
   end
+
+  get '/users/:slug/account' do
+    if !logged_in?
+      redirect '/'
+    else
+      erb :'/users/account'
+    end
+  end
 end
