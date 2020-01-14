@@ -17,4 +17,25 @@ class UsersController < ApplicationController
       erb :'/users/account'
     end
   end
-end
+
+  patch '/users/:slug/account' do
+    if !logged_in?
+      redirect '/'
+    else
+      # update username
+      if params[:user][:username] != current_user.username
+        valid_username = if valid_username?(params[:user][:username]) &&
+          !username_taken?(params[:user][:username])
+
+          current_user.update(username: params[:user][:username])
+
+          session[:username] = current_user.username
+
+          redirect to current_user_page
+        else
+          # TODO ERROR: new username invalid
+          redirect to "#{current_user_page}/account"
+        end
+      end
+    end
+  end
