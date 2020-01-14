@@ -39,3 +39,19 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  delete '/users/:slug/account' do
+    if !logged_in? || current_user.slug != params[:slug]
+      redirect '/'
+    else
+      # if current_user.slug != params[:slug]
+      #   #TODO ERROR
+      #   "You cannot "
+      # else
+        current_user.delete
+        redirect '/'
+      # end
+
+    end
+  end
+end
