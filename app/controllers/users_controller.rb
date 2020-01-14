@@ -1,18 +1,28 @@
 class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-
     if logged_in? && current_user.slug == params[:slug]
       erb :'/users/show'
     else
-      @slug = params[:slug]
+      @msg = ""
+      if @user
+        @msg = "You must be logged in as #{@user.username} to view this page."
+      else
+        @msg = "User #{params[:slug]} does not exist. <a href=\"/signup\">Would you like to make an account with this name?</a></h2>"
+      end
       erb :'/users/error'
     end
   end
 
   get '/users/:slug/account' do
+    # TODO handle someone trying to go directly to an account page
+    # someone else's existing account
+    # a nonexistent account
+    @slug = params[:slug]
     if !logged_in?
       redirect '/'
+    elsif current_user.slug != @slug
+      erb :'/users/error'
     else
       erb :'/users/account'
     end
