@@ -1,0 +1,16 @@
+<main>
+ <% if @user_has_game %>
+    <h2>You already have <%= @existing_game.title %> in your library.</h2>
+ <% else %>
+   <h2>This game already exists.<h2>
+    <div class="existing_game">
+      <%= @existing_game.title %>
+      <form action="/games/existing_game" method="POST">
+        <input type="hidden" name="game[id]" value="<%= @existing_game.id %>">
+        <input type="submit" value="Add Existing Game">
+      </form>
+    </div>
+ <% end %>
+</main>
+
+<a href="/games">Add a Different Game</a>
