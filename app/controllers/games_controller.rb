@@ -47,10 +47,18 @@ class GamesController < ApplicationController
             end
         end
       end
-
     end
   end
 
+  post '/games/existing_game' do
+    if !logged_in?
+      redirect '/login'
+    else
+      # Add existing game to User's library
+      current_user.games << Game.find_by(id: params[:game][:id])
+      redirect to current_user_page
+    end
+  end
 
   get '/games/:slug' do
     @game = Game.find_by_slug(params[:slug])
