@@ -1,1 +1,6 @@
 <%= @user.username %>'s Games
+<ul>
+  <% @user.games.each do |game| %>
+    <li><%= game.title %></li>
+  <% end %>
+</ul>
