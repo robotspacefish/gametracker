@@ -1,7 +1,11 @@
 class GamesController < ApplicationController
   get '/games' do
-    @games = Game.all
-    erb :'games/index'
+    if !logged_in?
+      redirect '/login'
+    else
+      @games = Game.all
+      erb :'games/index'
+    end
   end
 
   get '/games/new' do
