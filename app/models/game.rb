@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   has_many :users, through: :user_games
 
   def slug
-    self.username.downcase
+    self.title.downcase
   end
 
   def self.find_by_slug(slug)
