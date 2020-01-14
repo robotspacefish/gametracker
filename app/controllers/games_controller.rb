@@ -21,7 +21,8 @@ class GamesController < ApplicationController
       redirect '/login'
     else
       # check db for game
-      @existing_game = Game.find_by(title: params[:game][:title])
+      @existing_game = Game.where("title LIKE ?", params[:game][:title])[0]
+
       if @existing_game
         @user_has_game = !!current_user.games.find_by(id: @existing_game.id)
         erb :'games/add_existing_game'
