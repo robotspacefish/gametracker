@@ -1,8 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :game_users
-  has_many :games, through: :game_users
+  has_many :users_game_platforms
+  has_many :game_platforms, through: :users_game_platforms
+  has_many :games, through: :game_platforms
+  has_many :platforms, through: :game_platforms
+  #has_many :games, through: :users_game_platforms
+  # has_many :platforms, through: :users_game_platforms
+  # def games
+  #   users_game_platforms.map {|ugp| ugp.game}
+  # end
 
   def slug
     self.username.downcase
