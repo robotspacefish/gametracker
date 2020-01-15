@@ -47,21 +47,5 @@ class ApplicationController < Sinatra::Base
     def current_user_page
       "/users/#{current_user.slug}"
     end
-
-    def valid_username?(username)
-      # \s whitespace, \W Any non-word character
-      !username.blank? &&
-      !username.match?(/\s/) &&
-      !username.match?(/\W/)
-    end
-
-    def valid_password?(password)
-      !password.blank? &&
-      !password.match?(/\s/)
-    end
-
-    def username_taken?(username)
-      !!User.find_by(username: username)
-    end
   end
 end
