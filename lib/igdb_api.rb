@@ -1,6 +1,7 @@
 require_relative 'keys'
 require 'net/https'
 require 'pry'
+
 class IgdbApi
   def self.search(game_title)
     http = Net::HTTP.new('api-v3.igdb.com',443)
@@ -16,10 +17,12 @@ class IgdbApi
 
   def self.platforms
     platforms = self.retrieve_platforms_from_api
+    binding.pry
     self.add_platforms_to_db(platforms)
   end
 
   def self.add_platforms_to_db(platforms)
+    # TODO
     platforms.each do |platform|
       Platform.create(platform)
     end
