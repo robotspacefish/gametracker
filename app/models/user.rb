@@ -27,4 +27,12 @@ class User < ActiveRecord::Base
   def self.username_taken?(username)
     !!self.find_by(username: username)
   end
+
+  def should_update_username?(new_username)
+    self.username != new_username
+  end
+
+  def self.can_update_username?(new_username)
+    self.valid_username?(new_username) && !self.username_taken?(new_username)
+  end
 end
