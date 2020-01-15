@@ -1,16 +1,26 @@
 # IgdbApi.platforms
 
-User.create(username: "jess", password: "pw")
-User.create(username: "robotspacefish", password: "pw")
+u1 = User.create(username: "jess", password: "pw")
+u2 = User.create(username: "robotspacefish", password: "pw")
 
-Game.create(title: "Mass Effect")
-Game.create(title: "Mass Effect 2")
-Game.create(title: "Mass Effect 3")
-Game.create(title: "The Legend of Zelda")
-Game.create(title: "Gears of War")
-Game.create(title: "Hollow Knight")
+g1 = Game.create(title: "Mass Effect")
+g2 = Game.create(title: "Mass Effect 2")
+g3 = Game.create(title: "Mass Effect 3")
+g4 = Game.create(title: "The Legend of Zelda")
+g5 = Game.create(title: "Gears of War")
+g6 = Game.create(title: "Hollow Knight")
 
-Platform.create(name: "Playstation 4")
-Platform.create(name: "Xbox One")
-Platform.create(name: "Nintendo Switch")
-Platform.create(name: "PC")
+p1 = Platform.create(name: "Playstation 4")
+p2 = Platform.create(name: "Xbox One")
+p3 = Platform.create(name: "Nintendo Switch")
+p4 = Platform.create(name: "PC")
+
+u1.games << g6
+g6.platforms << p1
+g6.platforms << p2
+g6.platforms << p3
+g6.platforms << p4
+
+u1.games << g5
+g5.platforms << p2
+g5.platforms << p4
