@@ -1,5 +1,10 @@
 <% if logged_in? %>
-  <a href="/users/<%= current_user.slug %>">My Games</a>
-  <a href="/users/<%= current_user.slug %>/account">My Account</a>
-<% else %>
+  <% if request.path != "/users/#{current_user.slug}" %>
+    <a href="/users/<%= current_user.slug %>">My Games</a>
+  <% end %>
+
+  <% if !request.path.include?("/account") %>
+    <a href="/users/<%= current_user.slug %>/account">My Account</a>
+  <% end %>
+
 <% end %>

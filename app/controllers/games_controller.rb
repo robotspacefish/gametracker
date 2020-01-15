@@ -51,7 +51,7 @@ class GamesController < ApplicationController
     end
   end
 
-  post '/games/existing_game' do
+  post '/games/add_existing_game' do
     if !logged_in?
       redirect '/login'
     else
