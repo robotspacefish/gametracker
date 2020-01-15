@@ -47,5 +47,9 @@ class ApplicationController < Sinatra::Base
     def current_user_page
       "/users/#{current_user.slug}"
     end
+
+    def field_is_blank?(field_value)
+      field_value.blank?
+    end
   end
 end
