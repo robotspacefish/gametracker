@@ -6,6 +6,13 @@
         <!-- TODO  add game form -->
         <!-- TODO show game image -->
         <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.users.length %> Users) <%= "[You Own This]" if current_user.games.include?(game) %>
+
+        <% if !current_user.games.include?(game) %>
+          <form action="/games/existing_game" method="POST">
+            <input type="hidden" name="game[id]" value="<%= game.id %>">
+            <input type="submit" value="Add to Library">
+          </form>
+        <% end %>
       </div>
     <% end %>
   </div>
