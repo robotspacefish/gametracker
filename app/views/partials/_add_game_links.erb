@@ -1,5 +1,12 @@
 <% if request.path == "/games" %>
   <a href="/games/new">Add Custom Game</a>
+
+  <form action="/search" method="POST">
+    <label>Search: </label>
+    <input type="search" name="game[title]" placeholder="title ex: Mass Effect">
+    <input type="submit" value="Search" class="btn btn-search">
+  </form>
+
 <% elsif !request.path.include?("game") %>
   <a href="/games">Add Game</a>
 <% end %>
