@@ -6,7 +6,7 @@
       <div class="game">
       <!-- TODO  add game form -->
       <!-- TODO show game image -->
-        <a href="games/<%= game.slug %>"><%= game.title %></a>
+        <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.users.length %> Users) <%= "[You Own This]" if current_user.games.include?(game) %>
       </div>
     <% end %>
   </div>
