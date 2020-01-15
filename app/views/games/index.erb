@@ -1,19 +1,29 @@
 <main>
   <div class="games">
-  <h2>Games Users Have Previously Searched For</h2>
-    <% @games.each do |game| %>
-      <div class="game">
-        <!-- TODO  add game form -->
-        <!-- TODO show game image -->
-        <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.users.length %> Users) <%= "[You Own This]" if current_user.games.include?(game) %>
+    <% if @games.empty? %>
 
-        <% if !current_user.games.include?(game) %>
-          <form action="/games/add_existing_game" method="POST">
-            <input type="hidden" name="game[id]" value="<%= game.id %>">
-            <input type="submit" value="Add to Library">
-          </form>
-        <% end %>
-      </div>
+      <h2>Games will show up here once users start adding them to their libraries!</h2>
+
+    <% else %>
+
+      <h2>Games Users Have Previously Searched For</h2>
+
+      <% @games.each do |game| %>
+
+        <div class="game">
+          <!-- TODO  add game form -->
+          <!-- TODO show game image -->
+          <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.users.length %> Users) <%= "[You Own This]" if current_user.games.include?(game) %>
+
+          <% if !current_user.games.include?(game) %>
+            <form action="/games/add_existing_game" method="POST">
+              <input type="hidden" name="game[id]" value="<%= game.id %>">
+              <input type="submit" value="Add to Library">
+            </form>
+          <% end %>
+        </div>
+
+      <% end %>
     <% end %>
   </div>
 </main>

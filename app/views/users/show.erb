@@ -1,6 +1,11 @@
-<%= @user.username %>'s Games
-<ul>
-  <% @user.games.each do |game| %>
-    <li><%= game.title %></li>
-  <% end %>
-</ul>
+<h2><%= @user.username %>'s Games</h2>
+
+<% if @user.games.empty? %>
+  <h3>Your library is currently empty :(</h3>
+<% else %>
+  <ul>
+    <% @user.games.each do |game| %>
+      <li><%= game.title %></li>
+    <% end %>
+  </ul>
+<% end %>
