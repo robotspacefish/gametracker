@@ -27,9 +27,9 @@ class SessionsController < ApplicationController
 
   post '/signup' do
     username = nil
-    if valid_username?(params[:user][:username]) &&
-      !username_taken?(params[:user][:username]) &&
-      valid_password?(params[:user][:password])
+    if User.valid_username?(params[:user][:username]) &&
+      !User.username_taken?(params[:user][:username]) &&
+      User.valid_password?(params[:user][:password])
       user = User.create(
         username: params[:user][:username],
         password: params[:user][:username]

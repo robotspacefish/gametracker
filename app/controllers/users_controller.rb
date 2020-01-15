@@ -28,10 +28,11 @@ class UsersController < ApplicationController
     if !logged_in?
       redirect '/'
     else
+        # binding.pry
       # update username
       if params[:user][:username] != current_user.username
-        valid_username = if valid_username?(params[:user][:username]) &&
-          !username_taken?(params[:user][:username])
+        if User.valid_username?(params[:user][:username]) &&
+          !User.username_taken?(params[:user][:username])
 
           current_user.update(username: params[:user][:username])
 
