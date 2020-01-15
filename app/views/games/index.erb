@@ -1,11 +1,10 @@
 <main>
   <div class="games">
   <h2>Games Users Have Previously Searched For</h2>
-  <h3>Add a Game to Your Library</h3>
     <% @games.each do |game| %>
       <div class="game">
-      <!-- TODO  add game form -->
-      <!-- TODO show game image -->
+        <!-- TODO  add game form -->
+        <!-- TODO show game image -->
         <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.users.length %> Users) <%= "[You Own This]" if current_user.games.include?(game) %>
       </div>
     <% end %>
