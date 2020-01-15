@@ -45,6 +45,25 @@ class UsersController < ApplicationController
     end
   end
 
+  patch '/users/:slug/account/update_password' do
+    if !logged_in?
+      redirect '/'
+    else
+      if !field_is_blank?(params[:user][:password]) && User.can_update_password?(params[:user][:password])
+
+        current_user.update_password(params[:user][:password])
+
+        redirect to current_user_page
+      else
+         # TODO ERROR: new password invalid
+          # redirect to "#{current_user_page}/account"
+          "Invalid password"
+      end
+
+
+    end
+  end
+
   delete '/users/:slug/account' do
     if !logged_in? || current_user.slug != params[:slug]
       redirect '/'
