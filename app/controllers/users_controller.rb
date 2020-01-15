@@ -24,11 +24,10 @@ class UsersController < ApplicationController
     end
   end
 
-  patch '/users/:slug/account' do
+  patch '/users/:slug/account/update_username' do
     if !logged_in?
       redirect '/'
     else
-      # update username
       if current_user.should_update_username?(params[:user][:username])
 
         if User.can_update_username?(params[:user][:username])
