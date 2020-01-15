@@ -15,14 +15,10 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/account' do
-    # TODO handle someone trying to go directly to an account page
-    # someone else's existing account
-    # a nonexistent account
-    @slug = params[:slug]
     if !logged_in?
       redirect '/'
-    elsif current_user.slug != @slug
-      erb :error
+    elsif current_user.slug != params[:slug]
+      redirect to "#{current_user_page}/account"
     else
       erb :'/users/account'
     end
