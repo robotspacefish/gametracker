@@ -35,4 +35,12 @@ class User < ActiveRecord::Base
   def self.can_update_username?(new_username)
     self.valid_username?(new_username) && !self.username_taken?(new_username)
   end
+
+  def self.can_update_password?(new_password)
+    self.valid_password?(new_password)
+  end
+
+  def update_password(new_password)
+    self.update(password: new_password)
+  end
 end
