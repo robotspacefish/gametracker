@@ -1,9 +1,9 @@
 class Game < ActiveRecord::Base
-  has_many :game_users
-  has_many :users, through: :game_users
-
   has_many :game_platforms
   has_many :platforms, through: :game_platforms
+
+  has_many :users_game_platforms
+  has_many :users, through: :users_game_platforms
 
   def slug
     self.title.downcase.gsub(" ", "-")
