@@ -1,5 +1,6 @@
 require_relative 'keys'
-
+require 'net/https'
+require 'pry'
 class IgdbApi
   def self.search(game_title)
     http = Net::HTTP.new('api-v3.igdb.com',443)
@@ -13,5 +14,25 @@ class IgdbApi
     JSON.parse(http.request(request).body)
   end
 
+  def self.platforms
+    platforms = self.retrieve_platforms_from_api
+    self.add_platforms_to_db(platforms)
+  end
 
+  def self.add_platforms_to_db(platforms)
+    platforms.each do |platform|
+      Platform.create(platform)
+    end
+  end
+
+  def self.retrieve_platforms_from_api
+    http = Net::HTTP.new('api-v3.igdb.com',443)
+    http.use_ssl = true
+    path = 'https://api-v3.igdb.com/platforms'
+    request = Net::HTTP::Post.new(URI(path), {'user-key' => $api_key})
+
+    request.body = 'fields abbreviation, name, product_family.name, product_family.slug, platform_logo, platform_logo.height, platform_logo.width, platform_logo.image_id, platform_logo.url, slug; limit 500;'
+
+    JSON.parse(http.request(request).body)
+  end
 end
