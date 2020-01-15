@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :user_games
-  has_many :games, through: :user_games
+  has_many :game_users
+  has_many :games, through: :game_users
 
   def slug
     self.username.downcase

@@ -1,4 +1,4 @@
-class UserGame < ActiveRecord::Base
+class GameUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 end
