@@ -1,4 +1,5 @@
 <% if logged_in? %>
   <a href="/users/<%= current_user.slug %>">My Games</a>
+  <a href="/users/<%= current_user.slug %>/account">My Account</a>
 <% else %>
 <% end %>
