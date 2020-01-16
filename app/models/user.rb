@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   #   users_game_platforms.map {|ugp| ugp.game}
   # end
 
+  def find_uniq_games
+    self.games.uniq
+  end
+
   def slug
     self.username.downcase
   end

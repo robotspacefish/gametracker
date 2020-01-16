@@ -4,8 +4,13 @@
   <h3>Your library is currently empty :(</h3>
 <% else %>
   <ul>
-    <% @user.games.each do |game| %>
-      <li><%= game.title %></li>
+    <% @user.games.uniq.each do |game| %>
+      <li>
+        <%= game.title %>
+        <% game.platforms.each do |platform| %>
+          <%= platform.name %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% end %>
