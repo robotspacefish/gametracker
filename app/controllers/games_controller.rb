@@ -56,7 +56,11 @@ class GamesController < ApplicationController
       redirect '/login'
     else
       # Add existing game to User's library
-      current_user.games << Game.find_by(id: params[:game][:id])
+
+      game = Game.find_by(id: params[:game][:id])
+      game_platform = game.game_platforms.where("platform_id = ?", params[:game][:platform_id])
+
+      current_user.game_platforms << game_platform
       redirect to current_user_page
     end
   end
