@@ -12,4 +12,5 @@ class Platform < ActiveRecord::Base
       self.create(platform)
     end
   end
+
 end
