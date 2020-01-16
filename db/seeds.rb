@@ -8,7 +8,7 @@ user2 = User.create(username: "robotspacefish", password: "1234")
 me1 = Game.create(title: "Mass Effect")
 me2 = Game.create(title: "Mass Effect 2")
 me3 = Game.create(title: "Mass Effect 3")
-loz = Game.create(title: "The Legend of Zelda: Breath of the Wild")
+loz_botw = Game.create(title: "The Legend of Zelda: Breath of the Wild")
 gow = Game.create(title: "Gears of War 5")
 hk = Game.create(title: "Hollow Knight")
 
@@ -24,7 +24,8 @@ me1.platforms << pc
 me2.platforms << pc
 me3.platforms << pc
 
-loz.platforms << switch
+loz_botw.platforms << switch
+loz_botw.platforms << wiiu
 
 gow.platforms << xb1
 gow.platforms << pc
