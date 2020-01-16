@@ -5,3 +5,7 @@ NOTES.md
 db/development.sqlite
 
 db/test.sqlite
+
+sample_api_returns.rb
+
+questions.md

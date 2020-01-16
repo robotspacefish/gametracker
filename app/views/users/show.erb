@@ -1,6 +1,14 @@
-<%= @user.username %>'s Games
-<ul>
-  <% @user.games.each do |game| %>
-    <li><%= game.title %></li>
-  <% end %>
-</ul>
+<h2><%= @user.username %>'s Games</h2>
+
+<% if @user.games.empty? %>
+  <h3>Your library is currently empty :(</h3>
+<% else %>
+  <ul>
+    <% current_user.group_owned_platforms_by_games.each do |game_info| %>
+      <li>
+        <%= game_info[:game][:title] %>
+          [ Owned on: <%= game_info[:platforms].collect { |p| p[:name] }.join(', ') %> ]
+      </li>
+    <% end %>
+  </ul>
+<% end %>

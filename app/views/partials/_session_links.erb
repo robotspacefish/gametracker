@@ -6,7 +6,9 @@
 
     <% if request.path != "/login" %>
       <a href="/login">Log in</a>
-      <a href="/signup">Sign Up</a>
+      <% if request.path != "/signup" %>
+        <a href="/signup">Sign Up</a>
+      <% end %>
     <% end%>
 
   <% end %>

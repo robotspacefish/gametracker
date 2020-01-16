@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  get '/users' do
+    @users = User.all
+    erb :'users/index'
+  end
+
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
+    # TODO method to get uniq game titles along with all platforms returned to display on user's page
     if logged_in? && current_user.slug == params[:slug]
       erb :'/users/show'
     else
