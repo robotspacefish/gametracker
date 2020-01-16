@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  get '/users' do
+    @users = User.all
+    erb :'users/index'
+  end
+
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     if logged_in? && current_user.slug == params[:slug]
