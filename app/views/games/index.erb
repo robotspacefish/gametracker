@@ -12,10 +12,14 @@
 
             <% if !current_user.games.include?(game) %>
 
-              <form action="/games/add_existing_game" method="POST">
-                <input type="hidden" name="game[id]" value="<%= game.id %>">
-                <input type="submit" value="Add to Library">
-              </form>
+             <% game.platforms.each do |p| %>
+               <form action="/games/add_existing_game" method="POST">
+                  <input type="hidden" name="game[id]" value="<%= game.id %>">
+                  <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
+                  <input type="submit" value="Add for <%= p.name %>">
+                </form>
+              <% end %>
+
             <% end %>
           </li>
         <% end %>
