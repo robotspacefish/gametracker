@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :users_game_platforms
   has_many :game_platforms, through: :users_game_platforms
+
   has_many :games, through: :game_platforms
   has_many :platforms, through: :game_platforms
   #has_many :games, through: :users_game_platforms
@@ -13,6 +14,28 @@ class User < ActiveRecord::Base
 
   def find_uniq_games
     self.games.uniq
+  end
+
+  def group_owned_platforms_by_games
+    games = []
+
+    self.game_platforms.each do |gp_assoc|
+      game_info = {}
+      game = Game.find_by(id: gp_assoc.game_id)
+      platform = Platform.find_by(id: gp_assoc.platform_id)
+
+      existing_title = games.find { |g| g[:game][:title]  ==  game.title }
+      if existing_title
+        existing_title[:platforms] << platform
+      else
+        game_info[:game] = game
+        game_info[:platforms] = []
+        game_info[:platforms] << platform
+
+        games << game_info
+      end
+    end
+    games
   end
 
   def slug
