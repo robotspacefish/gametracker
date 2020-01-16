@@ -17,6 +17,7 @@ ps4 = Platform.find_by(abbreviation: "PS4")
 xb1 = Platform.where("name LIKE ?", "%#{"xbox one"}%").first
 switch = Platform.where("name LIKE ?", "%#{"switch"}%").first
 pc = Platform.find_by(abbreviation: "PC")
+wiiu = Platform.where("name LIKE ?", "%#{"wii u"}%").first
 
 # add platforms to games
 me1.platforms << pc
