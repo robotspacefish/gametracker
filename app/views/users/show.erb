@@ -4,12 +4,10 @@
   <h3>Your library is currently empty :(</h3>
 <% else %>
   <ul>
-    <% @user.games.uniq.each do |game| %>
+    <% current_user.group_owned_platforms_by_games.each do |game_info| %>
       <li>
-        <%= game.title %>
-        <% game.platforms.each do |platform| %>
-          <%= platform.name %>
-        <% end %>
+        <%= game_info[:game][:title] %>
+          [ Owned on: <%= game_info[:platforms].collect { |p| p[:name] }.join(', ') %> ]
       </li>
     <% end %>
   </ul>
