@@ -12,4 +12,8 @@ class Game < ActiveRecord::Base
   def self.find_by_slug(slug)
     Game.all.find { |g| g.slug == slug }
   end
+  def self.find_uniq_games_by_username(username)
+    user = User.find_by(username: username)
+    user.games.uniq
+  end
 end
