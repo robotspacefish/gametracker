@@ -7,3 +7,8 @@ desc "Console"
 task :console do
   Pry.start
 end
+
+desc "Import Platforms from API to DB"
+task :import_platforms do
+  Platform.setup_platforms
+end
