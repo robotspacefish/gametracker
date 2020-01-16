@@ -8,10 +8,19 @@
 
       <% @games.each do |game| %>
 
-        <div class="game">
-          <a href="<%= game.slug %>"><%= game.title %></a>
-        </div>
+        <!-- TODO  add game form -->
 
+        <!-- TODO show game image -->
+
+        <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.total_owned_by_all_users_across_platforms %> Users) <%= "[You Own This]" if game.is_owned_by_user?(current_user) %>
+
+        <% if !current_user.games.include?(game) %>
+
+          <form action="/games/add_existing_game" method="POST">
+            <input type="hidden" name="game[id]" value="<%= game.id %>">
+            <input type="submit" value="Add to Library">
+          </form>
+        <% end %>
       <% end %>
     <% end %>
   </div>
