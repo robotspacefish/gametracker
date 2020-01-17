@@ -4,6 +4,9 @@ class Game < ActiveRecord::Base
 
   has_many :users_game_platforms
   has_many :users, through: :users_game_platforms
+
+  has_many :game_images
+
   def slug
     self.title.downcase.gsub(" ", "-")
   end

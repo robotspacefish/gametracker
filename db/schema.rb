@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_210556) do
+ActiveRecord::Schema.define(version: 2020_01_17_013905) do
+
+  create_table "game_images", force: :cascade do |t|
+    t.string "height"
+    t.string "width"
+    t.integer "image_id"
+    t.string "url"
+    t.string "image_type"
+    t.integer "game_id"
+  end
 
   create_table "game_platforms", force: :cascade do |t|
     t.integer "game_id"
@@ -19,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_01_15_210556) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
+    t.string "url"
+    t.string "summary"
   end
 
   create_table "platforms", force: :cascade do |t|
