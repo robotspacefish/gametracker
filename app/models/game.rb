@@ -19,6 +19,17 @@ class Game < ActiveRecord::Base
     games.order(:title)
   end
 
+  def self.find_all_owned_game_titles
+    game_platform_ids = UsersGamePlatform.all.collect do |ugp|
+      ugp.game_platform_id
+    end
+
+    games = game_platform_ids.collect do |gp_id|
+      gp = GamePlatform.find(gp_id)
+      Game.find(gp.game_id)
+    end
+  end
+
   def total_owned_by_all_users_across_platforms
     # get game/platforms relationship
     game_platforms = self.game_platforms
