@@ -12,8 +12,8 @@ class IgdbApi
 
     request.body = "fields game.name, game.platforms.name, game.platforms.slug, game.platforms.abbreviation, game.cover.url, game.cover.height, game.cover.width, game.cover.image_id, game.url, game.slug; search \"#{game_title}\"; limit 50;"
 
-    result = JSON.parse(http.request(request).body)
-    binding.pry
+    JSON.parse(http.request(request).body)
+  end
   end
 
   def self.retrieve_platforms_from_api
