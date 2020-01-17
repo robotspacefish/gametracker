@@ -1,4 +1,4 @@
-<% if @search_results %>
+<% if @search_results && !@search_results.empty? %>
   <% @search_results.each do |game| %>
       <div class="search_game-result">
         <h3><%= game[:title] %></h3>
