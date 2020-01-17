@@ -6,11 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :games, through: :game_platforms
   has_many :platforms, through: :game_platforms
-  #has_many :games, through: :users_game_platforms
-  # has_many :platforms, through: :users_game_platforms
-  # def games
-  #   users_game_platforms.map {|ugp| ugp.game}
-  # end
 
   def delete_game_from_library(platform_id, game_id)
     gp = GamePlatform.where("platform_id = ? AND game_id = ?", platform_id, game_id).first
