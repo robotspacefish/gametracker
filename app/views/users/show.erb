@@ -3,7 +3,7 @@
   <h3>Your library is currently empty :(</h3>
 <% else %>
   <ul>
-    <% current_user.group_owned_platforms_by_games.each do |game_info| %>
+    <% current_user.games_sorted_and_grouped_by_platform.each do |game_info| %>
       <li>
         <%= game_info[:game][:title] %>
         <% game_info[:platforms].each do |p| %>
