@@ -14,6 +14,18 @@ class IgdbApi
 
     JSON.parse(http.request(request).body)
   end
+
+  def self.create_object_from_parsed_data(data)
+    data.collect do |g|
+      {
+      title: g["game"]["name"],
+      url: g["game"]["url"],
+      cover_art: g["game"]["cover"],
+      platforms: g["game"]["platforms"],
+      slug: g["game"]["slug"],
+      summary: g["game"]["summary"],
+      }
+    end
   end
 
   def self.retrieve_platforms_from_api
