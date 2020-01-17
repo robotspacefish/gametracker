@@ -5,35 +5,35 @@ user1 = User.create(username: "jess", password: "1234")
 user2 = User.create(username: "robotspacefish", password: "1234")
 
 # create games
-me1 = Game.create(title: "Mass Effect")
-me2 = Game.create(title: "Mass Effect 2")
-me3 = Game.create(title: "Mass Effect 3")
-loz_botw = Game.create(title: "The Legend of Zelda: Breath of the Wild")
-gow = Game.create(title: "Gears of War 5")
-hk = Game.create(title: "Hollow Knight")
+# me1 = Game.create(title: "Mass Effect")
+# me2 = Game.create(title: "Mass Effect 2")
+# me3 = Game.create(title: "Mass Effect 3")
+# loz_botw = Game.create(title: "The Legend of Zelda: Breath of the Wild")
+# gow = Game.create(title: "Gears of War 5")
+# hk = Game.create(title: "Hollow Knight")
 
-# find platforms (must be imported from rake task first)
-ps4 = Platform.find_by(abbreviation: "PS4")
-xb1 = Platform.where("name LIKE ?", "%#{"xbox one"}%").first
-switch = Platform.where("name LIKE ?", "%#{"switch"}%").first
-pc = Platform.find_by(abbreviation: "PC")
-wiiu = Platform.where("name LIKE ?", "%#{"wii u"}%").first
+# # find platforms (must be imported from rake task first)
+# ps4 = Platform.find_by(abbreviation: "PS4")
+# xb1 = Platform.where("name LIKE ?", "%#{"xbox one"}%").first
+# switch = Platform.where("name LIKE ?", "%#{"switch"}%").first
+# pc = Platform.find_by(abbreviation: "PC")
+# wiiu = Platform.where("name LIKE ?", "%#{"wii u"}%").first
 
-# add platforms to games
-me1.platforms << pc
-me2.platforms << pc
-me3.platforms << pc
+# # add platforms to games
+# me1.platforms << pc
+# me2.platforms << pc
+# me3.platforms << pc
 
-loz_botw.platforms << switch
-loz_botw.platforms << wiiu
+# loz_botw.platforms << switch
+# loz_botw.platforms << wiiu
 
-gow.platforms << xb1
-gow.platforms << pc
+# gow.platforms << xb1
+# gow.platforms << pc
 
-hk.platforms << ps4
-hk.platforms << xb1
-hk.platforms << pc
-hk.platforms << switch
+# hk.platforms << ps4
+# hk.platforms << xb1
+# hk.platforms << pc
+# hk.platforms << switch
 
 
 # # user1 owns Gears of War on Xbox and PC
