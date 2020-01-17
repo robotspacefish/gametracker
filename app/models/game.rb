@@ -15,6 +15,10 @@ class Game < ActiveRecord::Base
     Game.all.find { |g| g.slug == slug }
   end
 
+  def self.sort_by_title(games)
+    games.order(:title)
+  end
+
   def total_owned_by_all_users_across_platforms
     # get game/platforms relationship
     game_platforms = self.game_platforms
