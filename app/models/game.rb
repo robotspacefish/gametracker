@@ -58,29 +58,48 @@ class Game < ActiveRecord::Base
     !!Game.find_by(igdb_id: igdb_id)
   end
 
-  def self.add_game_to_db(g)
-    game = Game.create(
-      igdb_id: g[:igdb_id],
-      title: g[:title],
-      url: g[:url],
-      summary: g[:summary]
+  def self.create_custom_game(g_hash)
+    game = Game.create(title: g_hash[:title])
+    platform = Platform.find(g_hash[:platform_id])
+    game.platforms << platform
+    game
+  end
+
+  def self.create_game(g_hash)
+    Game.create(
+      igdb_id: g_hash[:igdb_id],
+      title: g_hash[:title],
+      url: g_hash[:url],
+      summary: g_hash[:summary]
       )
+  end
 
-    if g[:cover_art]
-      cover_art = GameImage.create(
-        image_type: "cover_art",
-        image_id: g[:cover_art]["image_id"],
-        height: g[:cover_art]["height"],
-        width: g[:cover_art]["width"],
-        url: g[:cover_art]["url"]
-      )
+  def self.create_game_images_for_game(game, image_hash, image_type)
+    images = GameImage.create(
+      image_type: image_type,
+      image_id: image_hash["image_id"],
+      height: image_hash["height"],
+      width: image_hash["width"],
+      url: image_hash["url"]
+    )
 
-      game.game_images << cover_art
-    end
+    game.game_images << images
+  end
 
-    g[:platforms].each do |p|
+  def self.add_platforms_to_game(game, platforms_array)
+    platforms_array.each do |p|
       game.platforms << Platform.find_by(id: p["id"])
     end
+  end
+
+  def self.add_game_to_db(g)
+    game = self.create_game(g)
+
+    if g[:cover_art]
+      self.create_game_images_for_game(game, g[:cover_art], "cover_art")
+    end
+
+    self.add_platforms_to_game(game, g[:platforms])
 
     game
   end
