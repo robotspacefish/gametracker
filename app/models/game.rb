@@ -38,4 +38,29 @@ class Game < ActiveRecord::Base
     user = User.find_by(username: username)
     user.games.uniq
   end
-end
+  def self.add_game_to_db(g)
+    game = Game.create(
+      igdb_id: g[:igdb_id],
+      title: g[:title],
+      url: g[:url],
+      summary: g[:summary]
+      )
+
+    if g[:cover_art]
+      cover_art = GameImage.create(
+        image_type: "cover_art",
+        image_id: g[:cover_art]["image_id"],
+        height: g[:cover_art]["height"],
+        width: g[:cover_art]["width"],
+        url: g[:cover_art]["url"]
+      )
+
+      game.game_images << cover_art
+    end
+
+    g[:platforms].each do |p|
+      game.platforms << Platform.find_by(id: p["id"])
+    end
+
+    game
+  end
