@@ -1,26 +1,24 @@
-<% if @games_objects %>
-
-  <% @games_objects.each do |game| %>
-    <% if game[:platforms] && game[:title] %>
+<% if @search_results %>
+  <% @search_results.each do |game| %>
       <div class="search_game-result">
-        <% if game[:cover_art] %>
+        <h3><%= game[:title] %></h3>
+
+        <% if game.cover_art %>
           <div class="search_game-result_image">
-            <img src="<%= game[:cover_art]["url"] %>" alt="<%= game[:title] %>cover art">
+            <img src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
           </div>
         <% end %>
 
-        <h3><%= game[:title] || "N/A" %></h3>
+        <div class="search_game-result_platforms">
+          <% game.platforms.each do |p| %>
+            <form>
+              <input type="submit" class="btn btn-submit" value="Add for <%= p.name %>">
+            </form>
+          <% end %>
+        </div>
 
-          <div class="search_game-result_platforms">
-            <% game[:platforms].each do |p| %>
-              <form>
-                <input type="submit" class="btn btn-submit" value="Add for <%=p["name"] %>">
-              </form>
-            <% end %>
-
-          </div>
       </div>
-
-    <% end %>
   <% end %>
+<% else %>
+  <h2>No Results</h2>
 <% end %>
