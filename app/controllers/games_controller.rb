@@ -13,6 +13,7 @@ class GamesController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
+      @platforms = Platform.all.order(:name)
       erb :'/games/new'
     end
   end
