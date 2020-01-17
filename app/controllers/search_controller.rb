@@ -3,9 +3,14 @@ class SearchController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      results = IgdbApi.search(params[:game][:title])
-      @games_objects = IgdbApi.create_objects_from_parsed_data(results)
-      # TODO check db for existing games to add to results - check by igdb_id & custom=true
+      parsed_results = IgdbApi.search(params[:game][:title])
+      game_objects = IgdbApi.create_objects_from_parsed_data(parsed_results)
+
+      @search_results = game_objects.collect do |game|
+        # todo check custom games with no igdb_id first?
+        Game.find_or_add_game_to_db(game)
+      end.compact!
+      # binding.pry
       erb :'/search/results'
     end
 
