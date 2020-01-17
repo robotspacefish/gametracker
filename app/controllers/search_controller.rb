@@ -10,13 +10,8 @@ class SearchController < ApplicationController
         # todo check custom games with no igdb_id first?
         Game.find_or_add_game_to_db(game)
       end.compact!
-      # binding.pry
+binding.pry
       erb :'/search/results'
     end
-
-  end
-
-  get '/search/results' do
-    erb :'/search/results'
   end
 end
