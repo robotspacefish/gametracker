@@ -1,7 +1,7 @@
 <% if request.path == "/games" %>
   <a href="/games/new">Add Custom Game</a>
 
-  <form action="/search" method="POST">
+  <form action="/search/results" method="POST">
     <label>Search: </label>
     <input type="search" name="game[title]" placeholder="title ex: Mass Effect">
     <input type="submit" value="Search" class="btn btn-search">

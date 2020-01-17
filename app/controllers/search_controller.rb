@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  post '/search' do
+  post '/search/results' do
     results = IgdbApi.search(params[:game][:title])
       games_objects = IgdbApi.create_objects_from_parsed_data(results)
 
