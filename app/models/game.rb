@@ -39,12 +39,8 @@ class Game < ActiveRecord::Base
     user.games.uniq
   end
 
-  def self.find_or_add_game_to_db(game)
-    return if !game[:platforms] || game[:platforms].empty?
-
-    game_to_find = self.find_by(igdb_id: game[:igdb_id])
-
-    !game_to_find ? self.add_game_to_db(game) : game_to_find
+  def self.exists_in_db?(igdb_id)
+    !!Game.find_by(igdb_id: igdb_id)
   end
 
   def self.add_game_to_db(g)
