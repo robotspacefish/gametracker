@@ -6,14 +6,16 @@ class User < ActiveRecord::Base
 
   has_many :games, through: :game_platforms
   has_many :platforms, through: :game_platforms
-  #has_many :games, through: :users_game_platforms
-  # has_many :platforms, through: :users_game_platforms
-  # def games
-  #   users_game_platforms.map {|ugp| ugp.game}
-  # end
 
-  def find_uniq_games
-    self.games.uniq
+  def delete_game_from_library(platform_id, game_id)
+    gp = GamePlatform.where("platform_id = ? AND game_id = ?", platform_id, game_id).first
+    UsersGamePlatform.where("user_id = ? AND game_platform_id = ?", self.id, gp.id).first.delete
+  end
+
+  def games_sorted_and_grouped_by_platform
+    games = self.group_owned_platforms_by_games
+
+    games.sort_by! { |games_hash| games_hash[:game][:title] }
   end
 
   def group_owned_platforms_by_games
@@ -35,6 +37,7 @@ class User < ActiveRecord::Base
         games << game_info
       end
     end
+
     games
   end
 

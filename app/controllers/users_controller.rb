@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   get '/users' do
-    @users = User.all
-    erb :'users/index'
+   if !logged_in?
+    redirect '/login'
+   else
+      @users = User.all.order(:username)
+      erb :'users/index'
+   end
   end
 
   get '/users/:slug' do
@@ -82,6 +86,15 @@ class UsersController < ApplicationController
         redirect '/'
       # end
 
+    end
+  end
+
+  delete '/users/:slug/game' do
+     if !logged_in? || current_user.slug != params[:slug]
+      redirect '/'
+    else
+      current_user.delete_game_from_library(params[:game][:platform_id], params[:game][:game_id])
+      redirect current_user_page
     end
   end
 end
