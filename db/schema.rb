@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_01_17_013905) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
+    t.string "url"
+    t.string "summary"
   end
 
   create_table "platforms", force: :cascade do |t|
