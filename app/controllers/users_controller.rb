@@ -3,7 +3,7 @@ class UsersController < ApplicationController
    if !logged_in?
     redirect '/login'
    else
-      @users = User.all
+      @users = User.all.order(:username)
       erb :'users/index'
    end
   end
