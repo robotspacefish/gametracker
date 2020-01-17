@@ -22,7 +22,6 @@ class IgdbApi
       url: g["game"]["url"],
       cover_art: g["game"]["cover"],
       platforms: g["game"]["platforms"],
-      slug: g["game"]["slug"],
       summary: g["game"]["summary"],
       }
     end
