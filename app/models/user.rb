@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
     UsersGamePlatform.find_by_ids(self.id, gp.id).first.delete
   end
 
+  def owns_game_on_platform?(game, platform)
+    gp = GamePlatform.find_by_ids(platform.id, game.id)
+    !!UsersGamePlatform.find_by_ids(self.id, gp.id)
+  end
+
   def games_sorted_and_grouped_by_platform
     games = self.group_owned_platforms_by_games
 
