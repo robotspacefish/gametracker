@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
     self.games.uniq
   end
 
+  def delete_game_from_library(platform_id, game_id)
+    gp = GamePlatform.where("platform_id = ? AND game_id = ?", platform_id, game_id).first
+    UsersGamePlatform.where("user_id = ? AND game_platform_id = ?", self.id, gp.id).first.delete
+  end
+
   def group_owned_platforms_by_games
     games = []
 
