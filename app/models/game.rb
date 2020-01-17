@@ -78,4 +78,7 @@ class Game < ActiveRecord::Base
     self.game_images.find_by(image_type: "cover_art")
   end
 
+  def self.find_search_results(game_title)
+    Game.where("title LIKE ?", "%#{game_title}%")
+  end
 end
