@@ -88,4 +88,13 @@ class UsersController < ApplicationController
 
     end
   end
+
+  delete '/users/:slug/game' do
+     if !logged_in? || current_user.slug != params[:slug]
+      redirect '/'
+    else
+      current_user.delete_game_from_library(params[:game][:platform_id], params[:game][:game_id])
+      redirect current_user_page
+    end
+  end
 end
