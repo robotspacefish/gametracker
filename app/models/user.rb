@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
   #   users_game_platforms.map {|ugp| ugp.game}
   # end
 
-  def find_uniq_games
-    self.games.uniq
-  end
-
   def delete_game_from_library(platform_id, game_id)
     gp = GamePlatform.where("platform_id = ? AND game_id = ?", platform_id, game_id).first
     UsersGamePlatform.where("user_id = ? AND game_platform_id = ?", self.id, gp.id).first.delete
