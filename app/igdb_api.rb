@@ -19,7 +19,7 @@ class IgdbApi
     games = []
 
     data.each do |g|
-      if g["game"].class != Integer
+      if g["game"] && g["game"].class != Integer
         games << {
           igdb_id: g["id"],
           title: g["game"]["name"],
