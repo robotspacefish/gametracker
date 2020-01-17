@@ -16,15 +16,22 @@ class IgdbApi
   end
 
   def self.create_objects_from_parsed_data(data)
-    data.collect do |g|
-      {
-      title: g["game"]["name"],
-      url: g["game"]["url"],
-      cover_art: g["game"]["cover"],
-      platforms: g["game"]["platforms"],
-      summary: g["game"]["summary"],
-      }
+    games = []
+
+    data.each do |g|
+      if g["game"].class != Integer
+        games << {
+          igdb_id: g["id"],
+          title: g["game"]["name"],
+          url: g["game"]["url"],
+          cover_art: g["game"]["cover"],
+          platforms: g["game"]["platforms"],
+          summary: g["game"]["summary"],
+        }
+      end
     end
+
+    games
   end
 
   def self.retrieve_platforms_from_api
