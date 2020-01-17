@@ -59,7 +59,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.create_custom_game(g_hash)
-    game = Game.create(title: g_hash[:title])
+    game = Game.create(title: g_hash[:title], custom: g_hash[:custom])
     platform = Platform.find(g_hash[:platform_id])
     game.platforms << platform
     game

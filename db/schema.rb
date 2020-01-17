@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_17_035155) do
+ActiveRecord::Schema.define(version: 2020_01_17_210415) do
 
   create_table "game_images", force: :cascade do |t|
     t.string "height"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_01_17_035155) do
     t.string "url"
     t.string "summary"
     t.integer "igdb_id"
+    t.boolean "custom"
   end
 
   create_table "platforms", force: :cascade do |t|
