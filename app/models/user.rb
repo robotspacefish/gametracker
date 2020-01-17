@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_many :games, through: :game_platforms
   has_many :platforms, through: :game_platforms
 
+  def add_custom_game_to_library(game)
+    game_platform = game.game_platforms.first
+    self.game_platforms << game_platform
+  end
+
   def delete_game_from_library(platform_id, game_id)
     gp = GamePlatform.where("platform_id = ? AND game_id = ?", platform_id, game_id).first
     UsersGamePlatform.where("user_id = ? AND game_platform_id = ?", self.id, gp.id).first.delete
