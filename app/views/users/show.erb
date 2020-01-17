@@ -1,5 +1,4 @@
 <h2><%= @user.username %>'s Games</h2>
-
 <% if @user.games.empty? %>
   <h3>Your library is currently empty :(</h3>
 <% else %>
@@ -7,7 +6,16 @@
     <% current_user.group_owned_platforms_by_games.each do |game_info| %>
       <li>
         <%= game_info[:game][:title] %>
-          [ Owned on: <%= game_info[:platforms].collect { |p| p[:name] }.join(', ') %> ]
+        <% game_info[:platforms].each do |p| %>
+          <%= p[:name] %>
+          <form action="/users/<%= current_user.slug %>/game" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
+            <input type="hidden" name="game[game_id]" value="<%= game_info[:game][:id] %>">
+            <input type="submit" class="btn btn-submit" value="Delete?">
+          </form>
+        <% end %>
+
       </li>
     <% end %>
   </ul>
