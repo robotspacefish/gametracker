@@ -73,3 +73,9 @@ class Game < ActiveRecord::Base
 
     game
   end
+
+  def cover_art
+    self.game_images.find_by(image_type: "cover_art")
+  end
+
+end
