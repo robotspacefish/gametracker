@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   get '/users' do
-    @users = User.all
-    erb :'users/index'
+   if !logged_in?
+    redirect '/login'
+   else
+      @users = User.all
+      erb :'users/index'
+   end
   end
 
   get '/users/:slug' do
