@@ -36,29 +36,29 @@ hk.platforms << pc
 hk.platforms << switch
 
 
-# user1 owns Gears of War on Xbox and PC
-gow_game_platforms = GamePlatform.where("game_id = ?", gow.id)
-gow_game_platforms.each { |gp| user1.game_platforms << gp }
+# # user1 owns Gears of War on Xbox and PC
+# gow_game_platforms = GamePlatform.where("game_id = ?", gow.id)
+# gow_game_platforms.each { |gp| user1.game_platforms << gp }
 
-# user1 owns Hollow Knight on Switch
-hk_gp = GamePlatform.where("game_id = ? AND platform_id = ?", hk.id, switch.id)
-user1.game_platforms << hk_gp
+# # user1 owns Hollow Knight on Switch
+# hk_gp = GamePlatform.where("game_id = ? AND platform_id = ?", hk.id, switch.id)
+# user1.game_platforms << hk_gp
 
-#user2 owns Mass Effect 1,2,3
-me1_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me1.id, pc.id)
-me2_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me2.id, pc.id)
-me3_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me3.id, pc.id)
+# #user2 owns Mass Effect 1,2,3
+# me1_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me1.id, pc.id)
+# me2_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me2.id, pc.id)
+# me3_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me3.id, pc.id)
 
-user2.game_platforms << me1_gp
-user2.game_platforms << me2_gp
-user2.game_platforms << me3_gp
+# user2.game_platforms << me1_gp
+# user2.game_platforms << me2_gp
+# user2.game_platforms << me3_gp
 
-# user1 and user2 own Legend of Zelda
-loz_gp = GamePlatform.where("game_id = ? AND platform_id = ?", loz.id, switch.id)
+# # user1 and user2 own Legend of Zelda
+# loz_gp = GamePlatform.where("game_id = ? AND platform_id = ?", loz.id, switch.id)
 
-user1.game_platforms << loz_gp
-user2.game_platforms << loz_gp
+# user1.game_platforms << loz_gp
+# user2.game_platforms << loz_gp
 
-# user2 owns Gears of War on Xbox One
-gow_gp_xb1 = GamePlatform.where("game_id = ? AND platform_id = ?", gow.id, xb1.id)
-user2.game_platforms << gow_gp_xb1
+# # user2 owns Gears of War on Xbox One
+# gow_gp_xb1 = GamePlatform.where("game_id = ? AND platform_id = ?", gow.id, xb1.id)
+# user2.game_platforms << gow_gp_xb1
