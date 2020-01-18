@@ -30,7 +30,7 @@ class Game < ActiveRecord::Base
     end.uniq
   end
 
-  def total_owned_by_all_users_across_platforms
+  def total_of_title_owned
     users_game_platforms = self.game_platforms.collect do |gp|
       UsersGamePlatform.find_by_game_platform_id(gp.id)
     end.compact
