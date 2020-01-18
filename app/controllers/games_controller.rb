@@ -63,4 +63,11 @@ class GamesController < ApplicationController
 
     erb :'/games/show'
   end
-end
+
+  get '/games/:slug/edit' do
+    if logged_in?
+      @game = Game.find_by_slug(params[:slug])
+
+      erb :'/games/edit'
+    end
+  end
