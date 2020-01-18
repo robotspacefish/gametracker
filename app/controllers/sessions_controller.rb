@@ -1,5 +1,3 @@
-require 'rack-flash'
-
 class SessionsController < ApplicationController
   use Rack::Flash
 
