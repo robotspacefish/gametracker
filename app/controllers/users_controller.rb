@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
         if User.can_update_username?(params[:user][:username])
 
-          current_user.update(username: params[:user][:username])
+          current_user.update_username(params[:user][:username])
 
           session[:username] = current_user.username
 
