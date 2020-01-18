@@ -51,7 +51,6 @@ class GamesController < ApplicationController
       redirect '/login'
     else
       # Add existing game to User's library
-# binding.pry
       game = Game.find_by(id: params[:game][:id])
       game_platform = game.game_platforms.where("platform_id = ?", params[:game][:platform_id])
 
@@ -80,6 +79,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect "/games/#{params[:slug]}"
     else
+      flash[:message] = "There was a problem editing this game. Please try again."
       redirect "/games/#{params[:slug]}/edit"
     end
   end
