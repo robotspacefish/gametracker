@@ -90,5 +90,6 @@ class User < ActiveRecord::Base
 
   def update_password(new_password)
     self.update(password: new_password)
+    self.save
   end
 end
