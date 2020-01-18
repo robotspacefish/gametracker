@@ -49,7 +49,7 @@ class GamesController < ApplicationController
       redirect '/login'
     else
       # Add existing game to User's library
-
+# binding.pry
       game = Game.find_by(id: params[:game][:id])
       game_platform = game.game_platforms.where("platform_id = ?", params[:game][:platform_id])
 

@@ -1,8 +1,9 @@
 <h2>Account Information</h2>
 <form action="/users/<%=current_user.slug %>/account/update_username" method="POST">
   <input type="hidden" name="_method" value="PATCH">
-    <label>Change Username</label>
-    <input type="text" name="user[username]" value="<%= current_user.username%>">
+
+  <label>Change Username</label>
+  <input type="text" name="user[username]" value="<%= current_user.username%>">
 
   <input type="submit" value="Update Username">
 </form>
