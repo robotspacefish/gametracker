@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   def games_sorted_and_grouped_by_platform
     games = self.group_owned_platforms_by_games
 
-    Game.sort_games_hash_by_title(games)
+    Game.sort_hash_by_title(games)
   end
 
   def group_owned_platforms_by_games

@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
     games.sort_by { |g| g.title}
   end
 
-  def self.sort_games_hash_by_title(games)
+  def self.sort_hash_by_title(games)
     games.sort_by { |games_hash| games_hash[:game][:title] }
   end
 
