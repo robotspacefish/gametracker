@@ -15,6 +15,10 @@ class Game < ActiveRecord::Base
     Game.all.find { |g| g.slug == slug }
   end
 
+  def self.sort_array_by_title(games)
+    games.sort_by { |g| g.title}
+  end
+
   def self.sort_games_hash_by_title(games)
     games.sort_by { |games_hash| games_hash[:game][:title] }
   end
