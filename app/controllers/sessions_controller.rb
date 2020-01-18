@@ -45,10 +45,18 @@ class SessionsController < ApplicationController
       )
 
       session[:username] = user.username
-
       redirect current_user_page
     else
-      # TODO error
+      if !User.valid_username?(params[:user][:username])
+        flash[:message] = "Invalid username."
+      elsif User.username_taken?(params[:user][:username])
+        flash[:message] = "Username already in use."
+      elsif !User.valid_password?(params[:user][:password])
+        flash[:message] = "Invalid password."
+      else
+        flash[:message] = "There was a problem signing you up. Please try again."
+      end
+
       redirect '/signup'
     end
   end
