@@ -117,4 +117,10 @@ class Game < ActiveRecord::Base
   def self.find_search_results(game_title)
     Game.where("title LIKE ?", "%#{game_title}%")
   end
+
+  def owned_by_any_users?
+    self.game_platforms.any? do |gp|
+      UsersGamePlatform.find_by(game_platform_id: gp.id)
+    end
+  end
 end
