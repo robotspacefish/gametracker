@@ -1,7 +1,8 @@
 <% if @search_results && !@search_results.empty? %>
   <% @search_results.each do |game| %>
       <div class="search_game-result">
-        <h3><%= game[:title] %></h3>
+
+        <h3><a href="/games/<%= game.slug%>"><%= game.title %></a></h3>
 
         <% if game.cover_art %>
           <div class="search_game-result_image">
