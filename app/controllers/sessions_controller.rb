@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
 
   post '/login' do
     login(params[:user])
-    redirect current_user_page
+   if !logged_in?
+      "error loging in"
+   else
+      redirect current_user_page
+   end
   end
 
   get '/logout' do
