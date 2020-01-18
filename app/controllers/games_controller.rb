@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  use Rack::Flash
+
   get '/games' do
     if !logged_in?
       redirect '/login'
