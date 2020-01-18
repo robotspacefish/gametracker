@@ -7,6 +7,6 @@
     <input type="submit" value="Search" class="btn btn-search">
   </form>
 
-<% elsif !request.path.include?("game") || request.path.include?("games/") %>
+<% elsif logged_in? && !request.path.include?("game") || request.path.include?("games/") %>
   <a href="/games">Add Game</a>
 <% end %>
