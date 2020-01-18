@@ -11,7 +11,9 @@
 
     <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: @game} %>
 
-    <% if @game.summary %>
+
+    <% if @game.summary && !@game.summary.empty? %>
+      <h4>Summary:</h4>
       <p><%= @game.summary %></p>
     <% end %>
 
