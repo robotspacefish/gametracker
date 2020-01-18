@@ -1,0 +1,21 @@
+<% if logged_in? && @game.custom %>
+  <h4>Changes to a custom game show for all users<h4>
+
+  <form action="/games/<%= @game.slug %>/edit" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <% if @game.owned_by_any_users? %>
+      <h3><%= @game.title %> <span>(title cannot be changed if owned by a user)</h3>
+    <% else %>
+      <label>Title</label>
+      <input type="text" name=game[title] value="<%= @game.title %>">
+     <% end %>
+
+    <label>Summary</label>
+    <textarea name=game[summary]><%=@game.summary %></textarea>
+    <input type="submit" value="Edit Custom Game">
+  </form>
+
+
+
+
+<% end %>
