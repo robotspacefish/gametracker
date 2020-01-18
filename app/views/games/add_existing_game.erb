@@ -5,10 +5,7 @@
    <h2>This game already exists.<h2>
     <div class="add_existing_game">
       <%= @existing_game.title %>
-      <form action="/games/existing_game" method="POST">
-        <input type="hidden" name="game[id]" value="<%= @existing_game.id %>">
-        <input type="submit" value="Add Existing Game">
-      </form>
+      <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: @existing_game} %>
     </div>
  <% end %>
 </main>
