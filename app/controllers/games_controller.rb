@@ -29,7 +29,7 @@ class GamesController < ApplicationController
       title = params[:game][:title]
 
       if title.blank?
-        # TODO error "Title cannot be blank"
+        flash[:message] = "Title cannot be blank."
         redirect '/games/new'
       else
         # check db for game
