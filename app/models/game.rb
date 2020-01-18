@@ -31,16 +31,14 @@ class Game < ActiveRecord::Base
   end
 
   def total_owned_by_all_users_across_platforms
-    # get game/platforms relationship
-    game_platforms = self.game_platforms
+    users_game_platforms = self.game_platforms.collect do |gp|
+      UsersGamePlatform.find_by_game_platform_id(gp.id)
+    end.compact
 
-    # get relationship with users
-    game_ugp = game_platforms.collect do |gp|
-      UsersGamePlatform.where("game_platform_id = ?", gp.id)
+    total_users = []
+    users_game_platforms.each do |ugp|
+       total_users << ugp.user_id if !total_users.include?(ugp.user_id)
     end
-
-    # filter out all the empty Relations
-    total_users = game_ugp.filter { |ugp| !ugp.empty? }
 
     total_users.length
   end
