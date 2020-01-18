@@ -88,6 +88,11 @@ class User < ActiveRecord::Base
     self.valid_password?(new_password)
   end
 
+  def update_username(new_username)
+    self.update(username: new_username)
+    self.save
+  end
+
   def update_password(new_password)
     self.update(password: new_password)
     self.save
