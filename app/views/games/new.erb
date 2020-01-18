@@ -12,6 +12,8 @@
         <option value="<%= p.id %>"><%= p.name %></option>
       <% end %>
     </select>
+    <label>Summary</label>
+    <textarea name="game[summary]"></textarea>
   <input type="hidden" name="game[custom]" value="true">
   <input type="submit" value="Add Game" class="btn btn-submit">
 </form>
