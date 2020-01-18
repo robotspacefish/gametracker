@@ -13,11 +13,12 @@ class SessionsController < ApplicationController
 
   post '/login' do
     login(params[:user])
-   if !logged_in?
-      "error loging in"
-   else
-      redirect current_user_page
-   end
+    if !logged_in?
+      flash[:message] = "There was a problem logging you in. Make sure you have the correct username and password."
+      redirect '/login'
+    else
+        redirect current_user_page
+    end
   end
 
   get '/logout' do
