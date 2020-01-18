@@ -3,7 +3,9 @@ class GamesController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @games = Game.find_all_owned_game_titles
+      pre_sorted_games = Game.find_all_owned_game_titles
+
+      @games = Game.sort_array_by_title(pre_sorted_games)
 
       erb :'games/index'
     end
