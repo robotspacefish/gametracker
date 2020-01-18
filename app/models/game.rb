@@ -22,12 +22,12 @@ class Game < ActiveRecord::Base
   def self.find_all_owned_game_titles
     game_platform_ids = UsersGamePlatform.all.collect do |ugp|
       ugp.game_platform_id
-    end
+    end.uniq
 
     games = game_platform_ids.collect do |gp_id|
       gp = GamePlatform.find(gp_id)
       Game.find(gp.game_id)
-    end
+    end.uniq
   end
 
   def total_owned_by_all_users_across_platforms
