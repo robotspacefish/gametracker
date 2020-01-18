@@ -1,8 +1,12 @@
 
  <% game.platforms.each do |p| %>
-  <form action="/games/add_existing_game" method="POST">
-    <input type="hidden" name="game[id]" value="<%= game.id %>">
-    <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
-    <input type="submit" value="Add for <%= p.name %>">
-  </form>
+  <% if current_user.owns_game_on_platform?(game, p) %>
+     <button class="btn platform-btn" disabled><%= p.name %></button>
+  <% else %>
+    <form action="/games/add_existing_game" method="POST">
+      <input type="hidden" name="game[id]" value="<%= game.id %>">
+      <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
+      <input type="submit" value="Add for <%= p.name %>">
+    </form>
+  <% end %>
 <% end %>

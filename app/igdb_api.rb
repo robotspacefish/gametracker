@@ -10,14 +10,13 @@ class IgdbApi
 
     request = Net::HTTP::Post.new(URI(path), {'user-key' => $api_key})
 
-    request.body = "fields game.name, game.platforms.name, game.cover.url, game.cover.height, game.cover.width, game.cover.image_id, game.url, game.slug; search \"#{game_title}\"; limit 50;"
+    request.body = "fields game.name, game.platforms.name, game.cover.url, game.cover.height, game.cover.width, game.cover.image_id, game.url, game.summary, game.slug; search \"#{game_title}\"; limit 50;"
 
     JSON.parse(http.request(request).body)
   end
 
   def self.create_objects_from_parsed_data(data)
     games = []
-
     data.each do |g|
       if g["game"] && g["game"].class != Integer
         games << {

@@ -9,7 +9,7 @@
       <ul>
         <% @games.each do |game| %>
           <li>
-            <a href="<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.total_owned_by_all_users_across_platforms %> Users) <%= "[You Own This]" if game.is_owned_by_user?(current_user) %>
+            <a href="/games/<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.total_of_title_owned %> Users) <%= "[You Own This]" if game.is_owned_by_user?(current_user) %>
 
             <% if !current_user.games.include?(game) %>
                <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: game} %>

@@ -5,15 +5,13 @@
     <input type="text" name="game[title]" required>
   </div>
 
-  <%# <div>
-    <label>Cover Art URL</label>
-    <input type="text" name="game[cover_art]">
-  </div>
-
-  <div>
-    <label>Release Date</label>
-    <input type="datetime" name="game[release_date]">
-  </div> %>
-
+  <% # existing platforms from db %>
+    <label>Platform</label>
+    <select name="game[platform_id]">
+      <% @platforms.each do |p| %>
+        <option value="<%= p.id %>"><%= p.name %></option>
+      <% end %>
+    </select>
+  <input type="hidden" name="game[custom]" value="true">
   <input type="submit" value="Add Game" class="btn btn-submit">
 </form>
