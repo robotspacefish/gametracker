@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  use Rack::Flash
+
   get '/users' do
    if !logged_in?
     redirect '/login'
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    # TODO method to get uniq game titles along with all platforms returned to display on user's page
+
     if logged_in? && current_user.slug == params[:slug]
       erb :'/users/show'
     else
@@ -48,7 +50,7 @@ class UsersController < ApplicationController
 
           redirect to current_user_page
         else
-          # TODO ERROR: new username invalid
+          flash[:message] = "That name is invalid."
           redirect to "#{current_user_page}/account"
         end
       end
@@ -65,9 +67,8 @@ class UsersController < ApplicationController
 
         redirect to current_user_page
       else
-         # TODO ERROR: new password invalid
-          # redirect to "#{current_user_page}/account"
-          "Invalid password"
+        flash[:message] = "That password is invalid."
+        redirect to "#{current_user_page}/account"
       end
 
 
