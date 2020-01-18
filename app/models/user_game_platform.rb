@@ -5,4 +5,8 @@ class UsersGamePlatform < ActiveRecord::Base
   def self.find_by_ids(user_id, game_platform_id)
     self.where("user_id = ? AND game_platform_id = ?", user_id, game_platform_id).first
   end
+
+  def self.find_by_game_platform_id(game_platform_id)
+    UsersGamePlatform.where("game_platform_id = ?", game_platform_id).first
+  end
 end
