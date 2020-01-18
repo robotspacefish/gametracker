@@ -1,7 +1,3 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
 <form action="/login" method="POST">
   <div>
     <label>Username</label>
@@ -17,3 +13,5 @@
 </form>
 
 <a href="/signup">Need to Make an Account? Sign Up Here</a>
+
+<%= erb :'/partials/_flash' %>
