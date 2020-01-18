@@ -82,6 +82,7 @@ class UsersController < ApplicationController
       #   #TODO ERROR
       #   "You cannot "
       # else
+        UsersGamePlatform.delete_by_user_id(current_user.id)
         current_user.delete
         redirect '/'
       # end
