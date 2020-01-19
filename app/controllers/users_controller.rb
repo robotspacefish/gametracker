@@ -16,13 +16,14 @@ class UsersController < ApplicationController
     if logged_in? && current_user.slug == params[:slug]
       erb :'/users/show'
     else
-      @msg = ""
       if @user
-        @msg = "You must be logged in as #{@user.username} to view this page."
+
+        flash[:message] = "You must be logged in as #{@user.username} to view this page."
       else
-        @msg = "User #{params[:slug]} does not exist. <a href=\"/signup\">Would you like to make an account with this name?</a></h2>"
+        flash[:message] = "User #{params[:slug]} does not exist. <a href=\"/signup\">Would you like to make an account with this name?</a></h2>"
       end
-      erb :error
+
+      redirect '/error'
     end
   end
 
