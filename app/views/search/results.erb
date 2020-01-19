@@ -12,7 +12,7 @@
 
         <div class="search_game-result_platforms">
 
-        <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: game} %>
+        <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
 
 
         </div>
