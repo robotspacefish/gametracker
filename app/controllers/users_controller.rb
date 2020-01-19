@@ -79,15 +79,12 @@ class UsersController < ApplicationController
     if !logged_in? || current_user.slug != params[:slug]
       redirect '/'
     else
-      # if current_user.slug != params[:slug]
-      #   #TODO ERROR
-      #   "You cannot "
-      # else
-        UsersGamePlatform.delete_by_user_id(current_user.id)
-        current_user.delete
-        redirect '/'
-      # end
+      UsersGamePlatform.delete_by_user_id(current_user.id)
+      current_user.delete
 
+      flash[:message] = "You have successfully deleted your account. Goodbye!"
+
+      redirect '/'
     end
   end
 
