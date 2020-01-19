@@ -71,6 +71,12 @@ class GamesController < ApplicationController
   get '/games/:slug' do
     @game = Game.find_by_slug(params[:slug])
 
+    if !@game
+      flash[:message] = "That game doesn't exist in our database. Try using the search bar."
+
+      redirect '/error'
+    end
+
     erb :'/games/show'
   end
 
