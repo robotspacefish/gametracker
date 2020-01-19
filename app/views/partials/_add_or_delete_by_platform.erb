@@ -1,0 +1,13 @@
+
+<% platforms.each do |platform| %>
+
+  <% if current_user.owns_game_on_platform?(game, platform) %>
+    <%# delete %>
+    <%= erb :'/partials/_delete_from_library_form', locals: { game: game, platform: platform } %>
+
+  <% else %>
+    <%# add %>
+    <%= erb :'/partials/_add_game_by_platform_choice_to_user_form', locals: { game: game, platform: platform } %>
+  <% end %>
+
+<% end %>
