@@ -12,8 +12,9 @@
           <%= p[:name] %>
           <form action="/users/<%= current_user.slug %>/game" method="POST">
             <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="game[title]" value="<%= game_info[:game].title %>">
             <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
-            <input type="hidden" name="game[game_id]" value="<%= game_info[:game][:id] %>">
+            <input type="hidden" name="game[platform_name]" value="<%= p.name %>">
             <input type="submit" class="btn btn-submit" value="Delete?">
           </form>
         <% end %>
