@@ -7,21 +7,13 @@
   <ul>
     <% current_user.games_sorted_and_grouped_by_platform.each do |game_info| %>
       <li>
-        <a href="/games/<%= game_info[:game].slug %>"><%= game_info[:game].title %></a>
-        <% game_info[:platforms].each do |p| %>
-          <%= p.name %>
 
-          <form action="/users/<%= current_user.slug %>/game" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="game[title]" value="<%= game_info[:game].title %>">
-            <input type="hidden" name="game[platform_id]" value="<%= p.id %>">
-            <input type="hidden" name="game[platform_name]" value="<%= p.name %>">
-            <input type="hidden" name="game[game_id]" value="<%= game_info[:game].id %>">
-            <input type="submit" class="btn btn-submit" value="Delete?">
-          </form>
-        <% end %>
+        <a href="/games/<%= game_info[:game].slug %>"><%= game_info[:game].title %></a>
+
+        <%= erb :'/partials/_add_or_delete_by_platform', locals: { game: game_info[:game], platforms: game_info[:platforms] } %>
 
       </li>
+
     <% end %>
   </ul>
 <% end %>
