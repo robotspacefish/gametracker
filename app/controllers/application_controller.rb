@@ -22,7 +22,8 @@ class ApplicationController < Sinatra::Base
   end
 
   not_found do
-    'This is nowhere to be found.'
+    flash[:message] = "Page does not exist."
+    redirect '/error'
   end
 
   helpers do
