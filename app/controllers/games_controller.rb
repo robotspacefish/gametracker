@@ -39,6 +39,11 @@ class GamesController < ApplicationController
         else
           game = Game.create_custom_game(params[:game])
           current_user.add_custom_game_to_library(game)
+
+          platform = Platform.find(params[:game][:platform_id])
+
+          flash[:message] = "#{params[:game][:title]} for #{platform.name} added."
+
           redirect to current_user_page
         end
 
@@ -50,11 +55,15 @@ class GamesController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      # Add existing game to User's library
       game = Game.find_by(id: params[:game][:id])
       game_platform = game.game_platforms.where("platform_id = ?", params[:game][:platform_id])
 
+      platform = Platform.find(params[:game][:platform_id])
+
       current_user.game_platforms << game_platform
+
+      flash[:message] = "#{game.title} for #{platform.name} added."
+
       redirect to current_user_page
     end
   end
