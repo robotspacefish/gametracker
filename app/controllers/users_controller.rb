@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     else
       current_user.delete_game_from_library(params[:game][:platform_id], params[:game][:game_id])
 
-      flash[:message] = "#{params[:game][:title]} for #{params[:game][:platform_name]} was removed from your library."
+      flash[:message] = "#{params[:game][:title]} for #{params[:game][:platform_name]} was removed."
       redirect current_user_page
     end
   end
