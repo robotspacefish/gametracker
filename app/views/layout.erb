@@ -19,12 +19,11 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <div class="wrapper">
-        <%= erb :'partials/_header' %>
+      <%= erb :'partials/_header' %>
 
-        <hr>
-
+      <main>
         <%= yield %>
+      </main>
 
       <footer class="branding">
         <small>&copy; 2020 <strong><a href="https://github.com/robotspacefish" target="_blank" rel=noopener">robotspacefish</a></strong></small>
