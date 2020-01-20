@@ -107,6 +107,12 @@ main h2 {
   /* font-size: 0.5em; */
 }
 
+.toast.toast-primary {
+  text-align: center;
+  margin: 20px auto 40px;
+  max-width: 1200px;
+}
+
 footer.branding {
   text-align: center;
   padding: 40px 0;
