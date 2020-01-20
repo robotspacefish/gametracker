@@ -11,7 +11,7 @@
         <div class="game">
           <div class="you-own-this-text"><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
           <div class="owned-by-text">Owned By <%= game.total_of_title_owned %> Users</div>
-        <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
+        <%= erb :'/partials/_game_card', locals: { game: game, platforms: game.platforms } %>
         </div>
       <% end %>
 
