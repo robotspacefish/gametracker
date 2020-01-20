@@ -51,11 +51,13 @@ main h2 {
   margin: 20px 0 40px;
 }
 
+.custom-game-form,
 .login-signup-form {
   display: flex;
   flex-direction: column;
 }
 
+.custom-game-form input,
 .login-signup-form input {
   width: 100%;
 }
@@ -64,7 +66,8 @@ main h2 {
   font-size: 0.7em;
 }
 
-.login-signup-form .login-signup-btn {
+.custom-game-form button,
+.login-signup-form button {
   align-self: flex-end;
 }
 
