@@ -8,8 +8,12 @@
 
       <h2>Games Owned By Users</h2>
       <section class="games-container">
-        <% @games.each do |game| %>
+         <% @games.each do |game| %>
+          <div class="game">
+            <div class="owned-by-text">Owned By <%= game.total_of_title_owned %> Users</div>
+            <div class="you-own-this-text"><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
           <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
+          </div>
         <% end %>
 
 

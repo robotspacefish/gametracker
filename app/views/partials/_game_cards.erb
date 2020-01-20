@@ -1,18 +1,15 @@
 <div class="card game-card">
   <%# <a href="/games/<%= game.slug %>
+
+    <div class="card-header">
+      <h5 class="card-title game-card_title"><%= game.title %></h5>
+    </div>
+
     <% if game.cover_art %>
       <div class="card-image game-card_cover-art">
         <img class="game-card_cover-art img-responsive img-fit-contain" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
       </div>
     <% end %>
-
-    <div class="card-header">
-      <% if request.path == "/games" %>
-        <div>Owned By <%= game.total_of_title_owned %> Users</div>
-        <div><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
-      <% end %>
-      <h3 class="card-title game-card_title"><%= game.title %></h3>
-    </div>
 
     <div class="card-body">
       <div class="game-card_platforms">
