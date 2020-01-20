@@ -4,9 +4,7 @@
 
       <div class="tile user-tile">
         <div class="tile-icon">
-          <figure class="avatar avatar-xl" data-initial="<%= current_user.username[0] %>" style="background-color: #5755d9;">
-            <img src="https://robohash.org/<%= user.username %>" alt="...">
-          </figure>
+          <%= erb :'/partials/_user_avatar', locals: { username: user.username, size: "xl" } %>
         </div>
         <div class="tile-content">
           <p class="tile-title"><%= user.username %></p>
