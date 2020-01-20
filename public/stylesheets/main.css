@@ -46,9 +46,11 @@ main h2 {
   margin: 20px 0 40px;
 }
 
-.logo {
+.navbar .navbar-brand {
   font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-size: 3em;
 }
+
 .users-container,
 .games-container {
   display: flex;
