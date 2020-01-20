@@ -68,6 +68,10 @@ main h2 {
   align-self: flex-end;
 }
 
+.session-links {
+  font-size: 1.3em;
+}
+
 .navbar .navbar-brand {
   font-family: "ZCOOL QingKe HuangYou", cursive;
   font-size: 3em;
