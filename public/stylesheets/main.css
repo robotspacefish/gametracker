@@ -17,3 +17,19 @@
     font-family: "Open Sans", sans-serif;
   }
 }
+
+.game-card_delete-btn-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-card_close-btn {
+}
+
+.game-card_delete-form {
+  z-index: 1000;
+  position: absolute;
+  opacity: 0;
+}
