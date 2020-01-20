@@ -1,17 +1,7 @@
-<form action="/login" method="POST">
-  <div>
-    <label>Username</label>
-    <input type="text" name="user[username]" required>
-  </div>
+<%= erb :'/partials/_login_signup_form', locals: {
+  action_route: "/login",
+  submit_text: "Log In"
+} %>
 
-  <div>
-    <label>Password</label>
-    <input type="password" name="user[password]" required>
-  </div>
-
-  <input type="submit" value="Log In" class="btn btn-submit">
-</form>
-
+<br>
 <a href="/signup">Need to Make an Account? Sign Up Here</a>
-
-<%= erb :'/partials/_flash' %>

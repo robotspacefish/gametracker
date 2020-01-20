@@ -1,17 +1,4 @@
-<form action="/signup" method="POST">
-  <div>
-    <label>Username</label>
-    <input type="text" name="user[username]" required>
-    <p>Can contain letters, numbers, and underscore. Cannot contain spaces.</p>
-  <div>
-
-  <div>
-    <label>Password</label>
-    <input type="password" name="user[password]" required>
-    <p>Can contain letters, numbers, and/or special characters. Cannot contain spaces.</p>
-  <div>
-
-  <input type="submit" value="Sign Up" class="btn btn-submit">
-</form>
-
-<%= erb :'/partials/_flash' %>
+<%= erb :'/partials/_login_signup_form', locals: {
+  action_route: "/signup",
+  submit_text: "Sign Up"
+} %>
