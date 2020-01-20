@@ -1,8 +1,8 @@
-<span class="chip">
+<span class="chip_add-game chip bg-primary">
   <form class="game-card_add-form" action="/games/add_existing_game" method="POST">
     <input type="hidden" name="game[id]" value="<%= game.id %>">
     <input type="hidden" name="game[platform_id]" value="<%= platform.id %>">
 
-    <input type="submit" value="Add for <%= platform.name %>">
+    <input class="text-light" type="submit" value="Add for <%= platform.name %>">
   </form>
 </span>
