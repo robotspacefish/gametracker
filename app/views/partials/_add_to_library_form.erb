@@ -1,5 +1,8 @@
-<form action="/games/add_existing_game" method="POST">
-  <input type="hidden" name="game[id]" value="<%= game.id %>">
-  <input type="hidden" name="game[platform_id]" value="<%= platform.id %>">
-  <input type="submit" value="Add for <%= platform.name %>">
-</form>
+<span class="chip">
+  <form class="game-card_add-form" action="/games/add_existing_game" method="POST">
+    <input type="hidden" name="game[id]" value="<%= game.id %>">
+    <input type="hidden" name="game[platform_id]" value="<%= platform.id %>">
+
+    <input type="submit" value="Add for <%= platform.name %>">
+  </form>
+</span>
