@@ -1,30 +1,49 @@
-@media screen {
-  /* --- Reset Styles --- */
-  * {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+/* --- Reset Styles --- */
+* {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-  }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
-  body {
-    color: #222;
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
+body {
+  color: #222;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  margin: 10px 0;
+}
+
+div.divider {
+  margin-bottom: 40px;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
+  /* min-height: 60vh; */
+  width: 100%;
 }
 
 main h2 {
@@ -32,13 +51,46 @@ main h2 {
   margin: 20px 0 40px;
 }
 
+.custom-game-form,
+.login-signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-game-form input,
+.login-signup-form input {
+  width: 100%;
+}
+
+.login-signup-form p {
+  font-size: 0.7em;
+}
+
+.custom-game-form button,
+.login-signup-form button {
+  align-self: flex-end;
+}
+
+.session-links {
+  font-size: 1.3em;
+}
+
+.navbar .navbar-brand {
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-size: 3em;
+}
+
+.page-title {
+  text-transform: uppercase;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-size: 3em;
+}
+
+.users-container,
 .games-container {
   display: flex;
-  justify-content: space-evenly;
-  margin: 0 auto;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1200px;
+  justify-content: center;
 }
 
 .game,
@@ -47,6 +99,7 @@ main h2 {
   margin: 20px;
   margin-top: 0;
   align-items: center;
+  min-height: 600px;
 }
 
 .game-card a {
@@ -111,6 +164,17 @@ main h2 {
   text-align: center;
   margin: 20px auto 40px;
   max-width: 1200px;
+}
+
+.user-tile {
+  margin: 10px 20px;
+  padding: 20px;
+  border: 1px solid #5755d9;
+  border-radius: 15px;
+}
+
+.user-tile .tile-title {
+  font-weight: 700;
 }
 
 footer.branding {

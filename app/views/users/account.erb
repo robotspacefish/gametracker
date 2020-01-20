@@ -1,25 +1,30 @@
-<h2>Account Information</h2>
-<form action="/users/<%=current_user.slug %>/account/update_username" method="POST">
-  <input type="hidden" name="_method" value="PATCH">
-
-  <label>Change Username</label>
-  <input type="text" name="user[username]" value="<%= current_user.username%>">
-
-  <input type="submit" value="Update Username">
-</form>
-
-<form action="/users/<%=current_user.slug %>/account/update_password" method="POST">
-  <input type="hidden" name="_method" value="PATCH">
-
-    <label>Change Password</label>
-    <input type="password" name="user[password]">
-
-  <input type="submit" value="Update Password">
-</form>
-
-<form action="/users/<%=current_user.slug %>/account" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Account">
-</form>
-
 <%= erb :'/partials/_flash' %>
+
+<h2 class="page-title">Account Information</h2>
+
+  <%= erb :'/partials/_update_account_form', locals: {
+    action_route: "update_username",
+    label_text: "Username",
+    input_name: "username",
+    input_type: "text",
+    input_value: current_user.username
+  }%>
+
+  <%= erb :'/partials/_update_account_form', locals: {
+    action_route: "update_password",
+    label_text: "Password",
+    input_name: "password",
+    input_type: "password",
+    input_value: ""
+  }%>
+
+<br><br>
+
+<form
+  action="/users/<%=current_user.slug %>/account"
+  method="POST"
+  class="edit-account-form"
+>
+  <input type="hidden" name="_method" value="DELETE">
+  <button class="btn btn-error">Delete Account</button>
+</form>

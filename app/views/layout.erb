@@ -11,7 +11,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://fonts.googleapis.com/css?family=Bangers|Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou|Open+Sans:400,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -19,15 +19,19 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-      <%= erb :'partials/_header' %>
+      <div class="wrapper">
+          <%= erb :'partials/_header' %>
 
-      <main>
-        <%= yield %>
-      </main>
+          <div class="divider"></div>
 
-      <footer class="branding">
-        <small>&copy; 2020 <strong><a href="https://github.com/robotspacefish" target="_blank" rel=noopener">robotspacefish</a></strong></small>
-      </footer>
+          <main>
+            <%= yield %>
+          </main>
+
+          <footer class="branding">
+            <small>&copy; 2020 <strong><a href="https://github.com/robotspacefish" target="_blank" rel=noopener">robotspacefish</a></strong></small>
+          </footer>
+      </div>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

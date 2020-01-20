@@ -1,5 +1,19 @@
  <% if @users %>
-    <% @users.each do |user| %>
-      <li><%= user.username %> owns <%= user.games.uniq.length %> game titles.</li>
+    <div class="users-container">
+      <% @users.each do |user| %>
+
+      <div class="tile user-tile">
+        <div class="tile-icon">
+          <%= erb :'/partials/_user_avatar', locals: { username: user.username, size: "xl" } %>
+        </div>
+        <div class="tile-content">
+          <p class="tile-title"><%= user.username %></p>
+          <p class="tile-subtitle">Owns <%= user.games.uniq.length %> game titles.</p>
+        </div>
+      </div>
+
     <% end %>
+    </div>
   <% end %>
+
+
