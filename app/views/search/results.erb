@@ -1,24 +1,8 @@
 <% if @search_results && !@search_results.empty? %>
   <% @search_results.each do |game| %>
-      <div class="search_game-result">
-
-        <h3><a href="/games/<%= game.slug%>"><%= game.title %></a></h3>
-
-        <% if game.cover_art %>
-          <div class="search_game-result_image">
-            <img src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
-          </div>
-        <% end %>
-
-        <div class="search_game-result_platforms">
-
-        <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
-
-
-        </div>
-
-      </div>
+    <%= erb :'/partials/_game_cards', locals: { game: game } %>
   <% end %>
+
 <% else %>
   <h2>No Results</h2>
 <% end %>

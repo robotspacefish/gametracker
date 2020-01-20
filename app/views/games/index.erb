@@ -1,25 +1,18 @@
-<main>
+<main class="page_games-home">
   <%= erb :'/partials/_flash' %>
-
-  <div class="games">
     <% if @games.empty? %>
 
       <h2>Games will show up here once users start adding them to their libraries!</h2>
 
     <% else %>
+
       <h2>Games Owned By Users</h2>
-      <ul>
+      <section class="games-container">
         <% @games.each do |game| %>
-          <li>
-            <a href="/games/<%= game.slug %>"><%= game.title %></a> (Owned By <%= game.total_of_title_owned %> Users) <%= "[You Own This]" if game.is_owned_by_user?(current_user) %>
-
-            <% if !current_user.games.include?(game) %>
-               <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: game} %>
-            <% end %>
-          </li>
+          <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
         <% end %>
-      </ul>
 
+
+      </section>
     <% end %>
-  </div>
 </main>

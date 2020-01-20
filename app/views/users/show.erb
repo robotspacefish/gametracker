@@ -1,19 +1,14 @@
 <h2><%= @user.username %>'s Games</h2>
+
 <%= erb :'/partials/_flash' %>
 
 <% if @user.games.empty? %>
   <h3>Your library is currently empty :(</h3>
 <% else %>
-  <ul>
-    <% current_user.games_sorted_and_grouped_by_platform.each do |game_info| %>
-      <li>
+    <% games_info_hash = current_user.games_sorted_and_grouped_by_platform %>
+    <% games_info_hash.each do |game_info_hash| %>
 
-        <a href="/games/<%= game_info[:game].slug %>"><%= game_info[:game].title %></a>
-
-        <%= erb :'/partials/_add_or_delete_by_platform', locals: { game: game_info[:game], platforms: game_info[:platforms] } %>
-
-      </li>
-
+      <%= erb :'/partials/_game_cards', locals: { game: game_info_hash[:game], platforms: game_info_hash[:platforms] } %>
     <% end %>
-  </ul>
+
 <% end %>
