@@ -22,6 +22,10 @@ body {
   justify-content: center;
 }
 
+header {
+  padding: 40px 0;
+}
+
 div.divider {
   margin-bottom: 40px;
 }
