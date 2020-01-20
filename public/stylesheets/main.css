@@ -46,6 +46,9 @@ main h2 {
   margin: 20px 0 40px;
 }
 
+.logo {
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+}
 .users-container,
 .games-container {
   display: flex;
