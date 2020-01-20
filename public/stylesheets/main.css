@@ -49,6 +49,14 @@ main h2 {
   align-items: center;
 }
 
+.game-card a {
+  color: #222;
+}
+
+.game-card a:hover {
+  text-decoration: none;
+  color: #5755d9;
+}
 .game {
   display: flex;
   flex-direction: column;
