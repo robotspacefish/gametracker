@@ -5,12 +5,12 @@
   <h3>Your library is currently empty :(</h3>
 <% else %>
   <ul>
-    <% current_user.games_sorted_and_grouped_by_platform.each do |game_info| %>
+    <% current_user.games_sorted_and_grouped_by_platform.each do |game| %>
       <li>
 
-        <a href="/games/<%= game_info[:game].slug %>"><%= game_info[:game].title %></a>
+        <a href="/games/<%= game[:game].slug %>"><%= game[:game].title %></a>
 
-        <%= erb :'/partials/_add_or_delete_by_platform', locals: { game: game_info[:game], platforms: game_info[:platforms] } %>
+        <%= erb :'/partials/_add_or_delete_by_platform', locals: { game: game[:game], platforms: game[:platforms] } %>
 
       </li>
 
