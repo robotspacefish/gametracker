@@ -3,7 +3,7 @@
 <form action="<%= action_route %>" method="POST" class="login-signup-form">
    <div class="form-group">
       <label class="form-label" for="user[username]">Username</label>
-      <input type="text" name="user[username]" required>
+      <input class="form-input" type="text" name="user[username]" required>
       <% if action_route == "/signup" %>
         <p>Can contain letters, numbers, and underscore. Cannot contain spaces.</p>
       <% end %>
@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <label class="form-label" for="user[password]">Password</label>
-    <input type="password" name="user[password]" required>
+    <input class="form-input" type="password" name="user[password]" required>
     <% if action_route == "/signup" %>
       <p>Can contain letters, numbers, and/or special characters. Cannot contain spaces.</p>
     <% end %>
