@@ -1,19 +1,21 @@
 <div class="card game-card">
-  <%# <a href="/games/<%= game.slug %>
-
-    <div class="card-header">
+  <div class="card-header">
+    <a href="/games/<%= game.slug %>">
       <h5 class="card-title game-card_title"><%= game.title %></h5>
-    </div>
+    </a>
+  </div>
 
-    <% if game.cover_art %>
-      <div class="card-image game-card_cover-art">
-        <img class="game-card_cover-art img-responsive img-fit-contain" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
-      </div>
-    <% end %>
-
-    <div class="card-body">
-      <div class="game-card_platforms">
-        <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
-      </div>
+  <% if game.cover_art %>
+    <a href="/games/<%= game.slug %>">
+    <div class="card-image game-card_cover-art">
+      <img class="game-card_cover-art img-responsive img-fit-contain" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
     </div>
+    </a>
+  <% end %>
+
+  <div class="card-body">
+    <div class="game-card_platforms">
+      <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
+    </div>
+  </div>
 </div>
