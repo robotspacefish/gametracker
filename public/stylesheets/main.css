@@ -15,7 +15,24 @@
   body {
     color: #222;
     font-family: "Open Sans", sans-serif;
+    width: 100%;
   }
+}
+
+.page_games-home h2 {
+  text-align: center;
+}
+
+.games-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.game-card {
+  width: 300px;
+  margin: 10px 0;
 }
 
 .game-card_delete-btn-container {
@@ -23,9 +40,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.game-card_close-btn {
 }
 
 .game-card_delete-form {
