@@ -175,6 +175,13 @@ main h2 {
 
 .user-tile .tile-title {
   font-weight: 700;
+  font-size: 1.5em;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  text-transform: uppercase;
+}
+
+.user-tile .tile-subtitle {
+  color: #807fe2;
 }
 
 footer.branding {
