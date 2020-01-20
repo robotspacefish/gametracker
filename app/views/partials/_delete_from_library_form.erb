@@ -1,13 +1,19 @@
-<div>
-  <button class="btn" disabled><%= platform.name %></button>
 
-  <form action="/users/<%= current_user.slug %>/game" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="game[title]" value="<%= game.title %>">
-    <input type="hidden" name="game[platform_id]" value="<%= platform.id %>">
-    <input type="hidden" name="game[platform_name]" value="<%= platform.name %>">
-    <input type="hidden" name="game[game_id]" value="<%= game.id %>">
-    <input type="submit" class="btn btn-submit" value="Delete?">
-  </form>
+ <span class="chip">
+  <%= platform.name %>
 
-</div>
+  <div class="game-card_delete-btn-container">
+    <form class="game-card_delete-form" action="/users/<%= current_user.slug %>/game" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden" name="game[title]" value="<%= game.title %>">
+      <input type="hidden" name="game[platform_id]" value="<%= platform.id %>">
+      <input type="hidden" name="game[platform_name]" value="<%= platform.name %>">
+      <input type="hidden" name="game[game_id]" value="<%= game.id %>">
+
+      <input type="submit" value=" X ">
+    </form>
+    <span class="game-card_close-btn btn btn-clear" aria-label="Close" role="button"><span>
+  </div>
+</span>
+<br>
+
