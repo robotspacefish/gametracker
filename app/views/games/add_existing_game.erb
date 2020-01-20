@@ -1,14 +1,10 @@
 
- <% if @user_has_game %>
-    <h2>You already have <%= @existing_game.title %> in your library.</h2>
- <% else %>
-   <h2>This game already exists.<h2>
+    <%= erb :'/partials/_flash'%>
     <div class="games-container">
 
       <%= erb :'/partials/_game_card', locals: { game: @existing_game, platforms: @existing_game.platforms } %>
 
     </div>
- <% end %>
 
 <br>
-<a href="/games">Add a Different Game</a>
+<h2><a href="/games">Add a Different Game</a></h2>

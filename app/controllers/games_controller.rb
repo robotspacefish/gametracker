@@ -34,9 +34,14 @@ class GamesController < ApplicationController
       else
         # check db for game
         if @existing_game = Game.where("title LIKE ?", title)[0]
-          @user_has_game = !!current_user.games.find_by(id: @existing_game.id)
+          flash[:message] = "This game already exists."
+
+          if !!current_user.games.find_by(id: @existing_game.id)
+            flash[:message] = "You already have #{@existing_game.title} in your library."
+          end
           erb :'games/add_existing_game'
         else
+
           game = Game.create_custom_game(params[:game])
           current_user.add_custom_game_to_library(game)
 
