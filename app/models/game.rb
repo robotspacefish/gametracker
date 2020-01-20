@@ -81,12 +81,13 @@ class Game < ActiveRecord::Base
   end
 
   def self.create_game_images_for_game(game, image_hash, image_type)
+    url_show = image_hash["url"].gsub("thumb", "cover_big")
     images = GameImage.create(
       image_type: image_type,
       image_id: image_hash["image_id"],
       height: image_hash["height"],
       width: image_hash["width"],
-      url: image_hash["url"]
+      url: url_show
     )
 
     game.game_images << images
