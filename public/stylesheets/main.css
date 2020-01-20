@@ -24,6 +24,10 @@
   }
 }
 
+div.divider {
+  margin-bottom: 40px;
+}
+
 main {
   flex: 1;
   max-width: 1200px;
