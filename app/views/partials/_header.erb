@@ -1,13 +1,25 @@
-<header>
-  <div class="header__left">
-    <a href="/" class="logo">GT</a>
-  </div>
+<header class="navbar">
+  <section class="navbar-section">
+    <a href="/" class="navbar-brand mr-2 logo">GameTracker</a>
+  </section>
 
-  <div class="header__right">
-    <%= erb :'partials/_add_game_links' %>
-    <%= erb :'partials/_user_links' %>
+  <% if logged_in? %>
+    <section class="navbar-center">
+      <a href="/games" class="btn btn-link">Games</a>
+      <a href="/users" class="btn btn-link">Users</a>
+      <%= erb :'/partials/_search_form'%>
+    </section>
 
-     <%= erb :'partials/_session_links' %>
-  </div>
+    <section class="navbar-section">
+      <%= erb :'/partials/_user_links' %>
+    </section>
+
+  <% else %>
+
+    <section class="navbar-section">
+      <%= erb :'/partials/_session_links' %>
+    </section>
+
+  <% end %>
 
 </header>
