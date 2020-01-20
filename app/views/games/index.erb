@@ -1,7 +1,5 @@
 <main class="page_games-home">
   <%= erb :'/partials/_flash' %>
-
-  <div class="games">
     <% if @games.empty? %>
 
       <h2>Games will show up here once users start adding them to their libraries!</h2>
@@ -9,11 +7,12 @@
     <% else %>
 
       <h2>Games Owned By Users</h2>
+      <section class="games-container">
+        <% @games.each do |game| %>
+          <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
+        <% end %>
 
-      <% @games.each do |game| %>
-        <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
-      <% end %>
 
+      </section>
     <% end %>
-  </div>
 </main>
