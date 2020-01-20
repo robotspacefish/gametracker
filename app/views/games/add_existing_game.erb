@@ -1,4 +1,4 @@
-<main>
+
  <% if @user_has_game %>
     <h2>You already have <%= @existing_game.title %> in your library.</h2>
  <% else %>
@@ -8,6 +8,6 @@
       <%= erb :'partials/_add_game_by_platform_choice_to_user_form', locals: {game: @existing_game} %>
     </div>
  <% end %>
-</main>
 
+<br>
 <a href="/games">Add a Different Game</a>
