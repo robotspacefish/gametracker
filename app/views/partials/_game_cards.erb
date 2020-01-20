@@ -1,0 +1,17 @@
+<div class= game-card">
+
+  <h3 class="game-card_title"><a href="/games/<%= game.slug%>"><%= game.title %></a></h3>
+
+  <% if game.cover_art %>
+    <div class="game-card_cover-art">
+      <img src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
+    </div>
+  <% end %>
+
+  <div class="game-card_platforms">
+
+  <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
+
+  </div>
+
+</div>
