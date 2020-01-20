@@ -38,6 +38,7 @@ div.divider {
 
 main {
   flex: 1;
+  min-height: 60vh;
 }
 
 main h2 {
