@@ -1,8 +1,0 @@
-<% if request.path == "/games" %>
-  <a href="/games/new">Add Custom Game</a>
-
-  <%= erb :'/partials/_search_form'%>
-
-<% elsif logged_in? && !request.path.include?("game") || request.path.include?("games/") %>
-  <a href="/games">Add Game</a>
-<% end %>
