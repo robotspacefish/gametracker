@@ -169,7 +169,7 @@ main h2 {
 .user-tile {
   margin: 10px 20px;
   padding: 20px;
-  border: 1px solid #5755d9;
+  /* border: 1px solid #5755d9; */
   border-radius: 15px;
 }
 
