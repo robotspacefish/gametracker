@@ -1,22 +1,20 @@
-<main class="page_games-home">
-  <%= erb :'/partials/_flash' %>
-    <% if @games.empty? %>
+<%= erb :'/partials/_flash' %>
+  <% if @games.empty? %>
 
-      <h2>Games will show up here once users start adding them to their libraries!</h2>
+    <h2>Games will show up here once users start adding them to their libraries!</h2>
 
-    <% else %>
+  <% else %>
 
-      <h2>Games Owned By Users</h2>
-      <section class="games-container">
-         <% @games.each do |game| %>
-          <div class="game">
-            <div class="owned-by-text">Owned By <%= game.total_of_title_owned %> Users</div>
-            <div class="you-own-this-text"><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
-          <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
-          </div>
-        <% end %>
+    <h2>Games Owned By Users</h2>
+    <section class="games-container">
+        <% @games.each do |game| %>
+        <div class="game">
+          <div class="owned-by-text">Owned By <%= game.total_of_title_owned %> Users</div>
+          <div class="you-own-this-text"><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
+        <%= erb :'/partials/_game_cards', locals: { game: game, platforms: game.platforms } %>
+        </div>
+      <% end %>
 
 
-      </section>
-    <% end %>
-</main>
+    </section>
+  <% end %>
