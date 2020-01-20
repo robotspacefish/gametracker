@@ -7,6 +7,10 @@
     <% end %>
 
     <div class="card-header">
+      <% if request.path == "/games" %>
+        <div>Owned By <%= game.total_of_title_owned %> Users</div>
+        <div><%= "You Own This" if game.is_owned_by_user?(current_user) %></div>
+      <% end %>
       <h3 class="card-title game-card_title"><%= game.title %></h3>
     </div>
 
