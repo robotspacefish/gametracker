@@ -117,6 +117,17 @@ main h2 {
   max-width: 1200px;
 }
 
+.user-tile {
+  margin: 10px 20px;
+  padding: 20px;
+  border: 1px solid #5755d9;
+  border-radius: 15px;
+}
+
+.user-tile .tile-title {
+  font-weight: 700;
+}
+
 footer.branding {
   text-align: center;
   padding: 40px 0;
