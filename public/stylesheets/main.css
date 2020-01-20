@@ -93,3 +93,8 @@ main h2 {
 .chip {
   /* font-size: 0.5em; */
 }
+
+footer.branding {
+  text-align: center;
+  padding: 40px 0;
+}
