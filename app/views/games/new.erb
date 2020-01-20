@@ -1,19 +1,27 @@
 <h1>Add Custom Game</h1>
-<form action="/games" method="POST">
-  <div>
-    <label>Title</label>
+<form action="/games" method="POST" class="custom-game-form">
+  <div class="form-group">
+    <label class="form-label" for="game[title]">Title</label>
     <input type="text" name="game[title]" required>
   </div>
 
   <% # existing platforms from db %>
-    <label>Platform</label>
-    <select name="game[platform_id]">
+  <div class="form-group">
+    <label class="form-label" for="game[platform_id]">Platform</label>
+    <select class="form-select" name="game[platform_id]">
       <% @platforms.each do |p| %>
         <option value="<%= p.id %>"><%= p.name %></option>
       <% end %>
     </select>
-    <label>Summary</label>
-    <textarea name="game[summary]"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="game[summary]">Summary</label>
+    <textarea class="form-input" rows="3" name="game[summary]"></textarea>
+  </div>
+
+
   <input type="hidden" name="game[custom]" value="true">
-  <input type="submit" value="Add Game" class="btn btn-submit">
+  <%# <input type="submit" value="Add Game" class="btn btn-submit"> %>
+  <button class="btn btn-primary login-signup-btn">Add Game</button>
 </form>
