@@ -28,8 +28,8 @@ body {
 }
 
 header {
-  padding: 40px 20px;
   width: 100%;
+  margin: 10px 0;
 }
 
 div.divider {
