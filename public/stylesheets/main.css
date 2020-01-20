@@ -37,8 +37,12 @@ div.divider {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
-  min-height: 60vh;
+  /* min-height: 60vh; */
+  width: 100%;
 }
 
 main h2 {
