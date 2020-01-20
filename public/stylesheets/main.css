@@ -35,6 +35,7 @@ main h2 {
   margin: 20px 0 40px;
 }
 
+.users-container,
 .games-container {
   display: flex;
   justify-content: space-evenly;
