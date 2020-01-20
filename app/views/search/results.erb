@@ -1,8 +1,8 @@
 <% if @search_results && !@search_results.empty? %>
   <% @search_results.each do |game| %>
-      <%= erb :'/partials/_game_cards', locals: {
-        game: game } %>
+    <%= erb :'/partials/_game_cards', locals: { game: game } %>
   <% end %>
+
 <% else %>
   <h2>No Results</h2>
 <% end %>
