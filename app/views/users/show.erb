@@ -1,6 +1,6 @@
 <%= erb :'/partials/_flash' %>
 
-<h2><%= @user.username %>'s Games</h2>
+<h2 class="page-title"><%= @user.username %>'s Games</h2>
 
 <% if @user.games.empty? %>
   <h2>Your library is currently empty :(</h2>
