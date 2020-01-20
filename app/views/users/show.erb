@@ -1,16 +1,15 @@
-  <h2><%= @user.username %>'s Games</h2>
+<h2><%= @user.username %>'s Games</h2>
 
-  <%= erb :'/partials/_flash' %>
+<%= erb :'/partials/_flash' %>
 
-  <% if @user.games.empty? %>
-    <h3>Your library is currently empty :(</h3>
-  <% else %>
-    <section class="games-container">
-      <% games_info_hash = current_user.games_sorted_and_grouped_by_platform %>
-      <% games_info_hash.each do |game_info_hash| %>
+<% if @user.games.empty? %>
+  <h2>Your library is currently empty :(</h2>
+<% else %>
+  <section class="games-container">
+    <% games_info_hash = current_user.games_sorted_and_grouped_by_platform %>
+    <% games_info_hash.each do |game_info_hash| %>
 
-        <%= erb :'/partials/_game_cards', locals: { game: game_info_hash[:game], platforms: game_info_hash[:platforms] } %>
-      <% end %>
-    </section>
-  <% end %>
-
+      <%= erb :'/partials/_game_cards', locals: { game: game_info_hash[:game], platforms: game_info_hash[:platforms] } %>
+    <% end %>
+  </section>
+<% end %>
