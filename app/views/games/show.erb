@@ -1,22 +1,30 @@
-<main>
+  <% if @game.custom %>
+    <a href="/games/<%= @game.slug %>/edit" class="btn btn-edit">Edit Custom Game</a>
+  <% end %>
+
   <div>
-    <% if @game.custom %>
-      <a href="/games/<%= @game.slug %>/edit" class="btn btn-edit">Edit Custom Game</a>
-    <% end %>
-
     <h2><%= @game.title %></h2>
-    <% if @game.cover_art %>
-      <img src="<%= @game.cover_art.url %>" alt="<%= @game.title%> cover art">
-    <% end %>
-
-    <%= erb :'partials/_add_or_delete_by_platform', locals: {game: @game, platforms: @game.platforms } %>
-
-
-    <% if @game.summary && !@game.summary.empty? %>
-      <h4>Summary:</h4>
-      <p><%= @game.summary %></p>
-    <% end %>
-
   </div>
 
-</main>
+  <% if @game.cover_art %>
+    <div>
+      <img src="<%= @game.cover_art.url %>" alt="<%= @game.title%> cover art">
+    </div>
+
+    <br>
+  <% end %>
+
+  <div>
+    <%= erb :'partials/_add_or_delete_by_platform', locals: {game: @game, platforms: @game.platforms } %>
+  </div>
+
+  <br>
+
+  <% if @game.summary && !@game.summary.empty? %>
+    <div>
+      <h4>Summary:</h4>
+      <p><%= @game.summary %></p>
+    </div>
+  <% end %>
+
+
