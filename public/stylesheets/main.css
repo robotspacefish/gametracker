@@ -93,7 +93,7 @@ main h2 {
   margin: 20px;
   margin-top: 0;
   align-items: center;
-  flex: 1;
+  min-height: 600px;
 }
 
 .game-card a {
