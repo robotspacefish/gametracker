@@ -55,6 +55,7 @@ main h2 {
 .games-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .game,
