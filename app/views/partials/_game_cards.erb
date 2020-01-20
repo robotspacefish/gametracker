@@ -2,7 +2,7 @@
   <%# <a href="/games/<%= game.slug %>
     <% if game.cover_art %>
       <div class="card-image game-card_cover-art">
-        <img class="img-responsive img-fit-cover" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
+        <img class="game-card_cover-art img-responsive img-fit-contain" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
       </div>
     <% end %>
 
