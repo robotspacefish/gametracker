@@ -1,18 +1,5 @@
- <% if logged_in? %>
-    <div>
-      You are logged in as <%= current_user.username %>
-        <%= erb :'/partials/_user_avatar', locals: { username: current_user.username, size: "sm" } %>
-    </div>
+<a href="/login">Log in</a>
+<a href="/signup">Sign Up</a>
 
-    <a href="/logout" class="btn">Log out</a>
 
-  <% else %>
 
-    <% if request.path != "/login" %>
-      <a href="/login">Log in</a>
-      <% if request.path != "/signup" %>
-        <a href="/signup">Sign Up</a>
-      <% end %>
-    <% end%>
-
-  <% end %>
