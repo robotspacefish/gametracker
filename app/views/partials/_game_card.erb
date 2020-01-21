@@ -11,6 +11,8 @@
       <img class="game-card_cover-art img-responsive img-fit-contain" src="<%= game.cover_art.url %>" alt="<%= game.title %>cover art">
     </div>
     </a>
+  <% else %>
+    <%= erb :'/partials/_no_image' %>
   <% end %>
 
   <div class="card-body">
