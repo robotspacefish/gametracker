@@ -12,6 +12,7 @@ gem 'json'
 gem 'rack-flash3'
 
 group :development do
+  gem 'random_username', '~> 1.1', '>= 1.1.3'
   gem 'sqlite3'
   gem 'thin'
   gem 'shotgun'
