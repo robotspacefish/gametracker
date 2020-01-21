@@ -1,30 +1,36 @@
-<%= erb :'/partials/_flash' %>
+<div class="page-account">
+  <%= erb :'/partials/_flash' %>
 
-<h2 class="page-title">Update Account Information</h2>
+    <div>
+      <h2 class="page-title">Update Account Information</h2>
 
-  <%= erb :'/partials/_update_account_form', locals: {
-    action_route: "update_username",
-    label_text: "Username",
-    input_name: "username",
-    input_type: "text",
-    input_value: current_user.username
-  }%>
+      <%= erb :'/partials/_update_account_form', locals: {
+        action_route: "update_username",
+        label_text: "Username",
+        input_name: "username",
+        input_type: "text",
+        input_value: current_user.username
+      }%>
 
-  <%= erb :'/partials/_update_account_form', locals: {
-    action_route: "update_password",
-    label_text: "Password",
-    input_name: "password",
-    input_type: "password",
-    input_value: ""
-  }%>
+      <%= erb :'/partials/_update_account_form', locals: {
+        action_route: "update_password",
+        label_text: "Password",
+        input_name: "password",
+        input_type: "password",
+        input_value: ""
+      }%>
+    </div>
 
-<br><br>
 
-<form
-  action="/users/<%=current_user.slug %>/account"
-  method="POST"
-  class="edit-account-form"
->
-  <input type="hidden" name="_method" value="DELETE">
-  <button class="btn btn-error">Delete Account</button>
-</form>
+
+  <div class="delete-account-form">
+    <form
+      action="/users/<%=current_user.slug %>/account"
+      method="POST"
+      class="edit-account-form"
+      >
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-error">Delete Account</button>
+      </form>
+  </div>
+</div>

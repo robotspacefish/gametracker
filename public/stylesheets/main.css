@@ -83,6 +83,19 @@ main h2 {
   align-self: flex-end;
 }
 
+.delete-account-form {
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin-bottom: 200px;
+}
+
+.page-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
 .session-links {
   font-size: 1.3em;
 }
