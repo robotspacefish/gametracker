@@ -1,3 +1,5 @@
+  <%= erb :'/partials/_flash' %>
+
   <% if @game.custom %>
     <a href="/games/<%= @game.slug %>/edit" class="btn btn-edit">Edit Custom Game</a>
   <% end %>
