@@ -1,18 +1,22 @@
-<% if logged_in? %>
-  <div class="accordion">
-  <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
-    <label class="accordion-header" for="accordion-1">
-      <i class="icon icon-arrow-right mr-1"></i>
-      <%= current_user.username %>
+<ul class="menu user-menu">
+  <!-- menu item standard -->
+  <li class="menu-item">
+    <a href="#">
       <%= erb :'/partials/_user_avatar', locals: { username: current_user.username, size: "sm" } %>
-    </label>
-    <div class="accordion-body">
-      <!-- Accordions content -->
-      <ul class="menu menu-nav">
-        <li class="menu-item"><a href="/users/<%= current_user.slug %>">My Games</a></li>
-        <li class="menu-item"><a href="/users/<%= current_user.slug %>/account">My Account</a></li>
-        <li class="menu-item"><a href="/logout">Log out</a></li>
-      </ul>
-    </div>
-  </div>
-<% end %>
+      <%= current_user.username %>
+    </a>
+  </li>
+
+  <!-- menu divider -->
+  <li class="divider"></li>
+  <!-- menu item with badge -->
+  <li class="menu-item">
+    <a href="/users/<%= current_user.slug %>">My Games</a>
+  </li>
+  <li class="menu-item">
+    <a href="/users/<%= current_user.slug %>/account">Account</a>
+  </li>
+  <li class="menu-item">
+    <a href="/logout">Log out</a>
+  </li>
+</ul>
