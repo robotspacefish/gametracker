@@ -1,21 +1,35 @@
 <% if logged_in? && @game.custom %>
-  <h4>Changes to a custom game show for all users<h4>
+  <div class="form-container">
+    <form
+      action="/games/<%= @game.slug %>/edit"
+      method="POST"
+      class="custom-game-form"
+      >
 
-  <form action="/games/<%= @game.slug %>/edit" method="POST">
-    <input type="hidden" name="_method" value="PATCH">
-    <% if @game.owned_by_any_users? %>
-      <h3><%= @game.title %> <span>(title cannot be changed if owned by a user)</h3>
-    <% else %>
-      <label>Title</label>
-      <input type="text" name=game[title] value="<%= @game.title %>">
-     <% end %>
+      <input type="hidden" name="_method" value="PATCH">
 
-    <label>Summary</label>
-    <textarea name=game[summary]><%=@game.summary %></textarea>
-    <input type="submit" value="Edit Custom Game">
-  </form>
+      <% if @game.owned_by_any_users? %>
+        <h3><%= @game.title %></h3>
+        <p>(title cannot be changed if owned by a user)</p>
 
+      <% else %>
 
+        <div class="form-group">
+          <label class="form-label" for="game[title]">Title</label>
+          <input class="form-input" type="text" name="game[title]" value="<%= @game.title %>">
+        </div>
 
+      <% end %>
 
+      <div class="form-group">
+        <label class="form-label" for="game[summary]">Summary</label>
+        <textarea class="form-input" rows="3" name="game[summary]"><%=@game.summary %></textarea>
+      </div>
+
+      <button class="btn btn-primary login-signup-btn">Edit Custom Game</button>
+    </form>
+  </div>
+
+  <br><br>
+  <h5>Note: Changes made to a custom game show up for all users</h5>
 <% end %>

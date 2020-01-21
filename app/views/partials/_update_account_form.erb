@@ -1,27 +1,27 @@
-<form
-  action="/users/<%=current_user.slug %>/account/<%= action_route %>" method="POST"
-  class="edit-account-form form-horizontal"
->
-  <input type="hidden" name="_method" value="PATCH">
+<div class="form-container">
+  <form
+    action="/users/<%=current_user.slug %>/account/<%= action_route %>" method="POST"
+    class="edit-account-form form-horizontal"
+  >
+    <input type="hidden" name="_method" value="PATCH">
 
-  <div class="form-group column">
-    <div class="col-3 col-sm-12">
-      <label class="form-label" for="user[input_name]">Change <%= label_text %></label>
-    </div>
-
-    <div class="col-9 col-sm-12">
-      <div class="input-group input-inline">
-        <input
-          class="form-input"
-          type="<%= input_type %>"
-          name="user[<%= input_name %>]"
-          value="<%= input_value %>"
-        >
-        <button class="btn bg-primary">Update</button>
+    <div class="form-group column">
+      <div class="col-3 col-sm-12">
+        <label class="form-label" for="user[input_name]"><%= label_text %></label>
       </div>
 
+      <div class="col-9 col-sm-12">
+        <div class="input-group input-inline">
+          <input
+            class="form-input"
+            type="<%= input_type %>"
+            name="user[<%= input_name %>]"
+            value="<%= input_value %>"
+          >
+          <button class="btn bg-primary">Update</button>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-
-</form>
+  </form>
+</div>

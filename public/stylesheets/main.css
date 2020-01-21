@@ -51,6 +51,10 @@ main h2 {
   margin: 20px 0 40px;
 }
 
+.form-container {
+  min-width: 300px;
+}
+
 .custom-game-form,
 .login-signup-form {
   display: flex;
