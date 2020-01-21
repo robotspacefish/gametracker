@@ -209,6 +209,28 @@ main h2 {
   color: #807fe2;
 }
 
+/* header {
+  padding-top: 20px;
+  border: 1px solid red;
+  justify-self: flex-end;
+}
+header.navbar {
+  background: #eee;
+} */
+
+/* .navbar .navbar-center {
+  flex-wrap: wrap;
+}
+
+.navbar .user-menu-section {
+  position: relative;
+}
+
+.navbar .user-menu {
+  position: absolute;
+  top: 15px;
+} */
+
 footer.branding {
   text-align: center;
   padding: 40px 0;
