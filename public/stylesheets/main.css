@@ -127,6 +127,12 @@ main h2 {
   min-height: 600px;
 }
 
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .game-card {
   position: relative;
 }
@@ -142,12 +148,6 @@ main h2 {
 
 .game-card:hover {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
-}
-
-.game {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .custom-game-bar {
