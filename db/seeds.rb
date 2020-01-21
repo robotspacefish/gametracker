@@ -1,64 +1,55 @@
-# NOTE: rake import_platforms before seeding
+Rake::Task['import_platforms'].invoke
 
-# create users
-user1 = User.create(username: "jess", password: "1234")
-user2 = User.create(username: "robotspacefish", password: "1234")
+# # create users
+User.create(username: "robotspacefish", password: "1234")
 
-# create games
-# me1 = Game.create(title: "Mass Effect")
-# me2 = Game.create(title: "Mass Effect 2")
-# me3 = Game.create(title: "Mass Effect 3")
-# loz_botw = Game.create(title: "The Legend of Zelda: Breath of the Wild")
-# gow = Game.create(title: "Gears of War 5")
-# hk = Game.create(title: "Hollow Knight")
+50.times do
+  username = RandomUsername.username(:min_length => 6, :max_length => 8)
+  if !User.find_by(username: username)
+    User.create(
+      username: username,
+      password: "1234"
+    )
+  end
+end
 
-# # find platforms (must be imported from rake task first)
-# ps4 = Platform.find_by(abbreviation: "PS4")
-# xb1 = Platform.where("name LIKE ?", "%#{"xbox one"}%").first
-# switch = Platform.where("name LIKE ?", "%#{"switch"}%").first
-# pc = Platform.find_by(abbreviation: "PC")
-# wiiu = Platform.where("name LIKE ?", "%#{"wii u"}%").first
+# # add games to db
+games_group = [
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Mass Effect")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Fallout")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Gears of War")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Hollow Knight")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("The Legend of Zelda")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Super Mario Bros")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("The Count Lucanor")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Overcooked")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Elder Scrolls")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Dragon Age")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Monkey Island")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Pokemon"))
+]
 
-# # add platforms to games
-# me1.platforms << pc
-# me2.platforms << pc
-# me3.platforms << pc
-
-# loz_botw.platforms << switch
-# loz_botw.platforms << wiiu
-
-# gow.platforms << xb1
-# gow.platforms << pc
-
-# hk.platforms << ps4
-# hk.platforms << xb1
-# hk.platforms << pc
-# hk.platforms << switch
+games_group.each do |games|
+  games.each do |game|
+    if !Game.exists_in_db?(game[:igdb_id])
+      if game[:platforms] && !game[:platforms].empty?
+        Game.add_game_to_db(game)
+      end
+    end
+  end
+end
 
 
-# # user1 owns Gears of War on Xbox and PC
-# gow_game_platforms = GamePlatform.where("game_id = ?", gow.id)
-# gow_game_platforms.each { |gp| user1.game_platforms << gp }
-
-# # user1 owns Hollow Knight on Switch
-# hk_gp = GamePlatform.where("game_id = ? AND platform_id = ?", hk.id, switch.id)
-# user1.game_platforms << hk_gp
-
-# #user2 owns Mass Effect 1,2,3
-# me1_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me1.id, pc.id)
-# me2_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me2.id, pc.id)
-# me3_gp = GamePlatform.where("game_id = ? AND platform_id = ?", me3.id, pc.id)
-
-# user2.game_platforms << me1_gp
-# user2.game_platforms << me2_gp
-# user2.game_platforms << me3_gp
-
-# # user1 and user2 own Legend of Zelda
-# loz_gp = GamePlatform.where("game_id = ? AND platform_id = ?", loz.id, switch.id)
-
-# user1.game_platforms << loz_gp
-# user2.game_platforms << loz_gp
-
-# # user2 owns Gears of War on Xbox One
-# gow_gp_xb1 = GamePlatform.where("game_id = ? AND platform_id = ?", gow.id, xb1.id)
-# user2.game_platforms << gow_gp_xb1
+# add games to users
+User.all.each do |user|
+  if user.username != 'robotspacefish'
+    total_games = rand(11)
+    total_games.times do
+      game = Game.all.sample
+      platform_index = rand(game.platforms.length)
+      platform_id = game.platforms[platform_index].id
+      gp_assoc = GamePlatform.where("game_id = ? AND platform_id = ?", game.id, platform_id)
+      user.game_platforms << gp_assoc
+    end
+  end
+end
