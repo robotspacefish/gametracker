@@ -173,16 +173,16 @@ main h2 {
   border: none;
 }
 
-/* .chip:hover { */
-/* background-color:todo; */
-/* } */
+.chip.chip_add-game {
+  background-color: #5755d9;
+}
 
-/* .game-card-platforms span.chip_add-game:hover {
+.chip.chip_add-game:hover {
   background-color: #232359;
-} */
+}
 
-.chip {
-  /* font-size: 0.5em; */
+.chip.chip_delete-game:hover {
+  background-color: #c2c5c7;
 }
 
 .toast.toast-primary {
@@ -208,28 +208,6 @@ main h2 {
 .user-tile .tile-subtitle {
   color: #807fe2;
 }
-
-/* header {
-  padding-top: 20px;
-  border: 1px solid red;
-  justify-self: flex-end;
-}
-header.navbar {
-  background: #eee;
-} */
-
-/* .navbar .navbar-center {
-  flex-wrap: wrap;
-}
-
-.navbar .user-menu-section {
-  position: relative;
-}
-
-.navbar .user-menu {
-  position: absolute;
-  top: 15px;
-} */
 
 footer.branding {
   text-align: center;
