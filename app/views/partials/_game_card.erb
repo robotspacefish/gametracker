@@ -19,5 +19,11 @@
     <div class="game-card_platforms">
       <%= erb :'partials/_add_or_delete_by_platform', locals: {game: game, platforms: game.platforms} %>
     </div>
+
+    <% if game.custom %>
+      <div class="custom-game-bar">
+        [ CUSTOM ]
+      </div>
+    <% end %>
   </div>
 </div>

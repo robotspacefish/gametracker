@@ -127,6 +127,10 @@ main h2 {
   min-height: 600px;
 }
 
+.game-card {
+  position: relative;
+}
+
 .game-card a {
   color: #222;
 }
@@ -144,6 +148,18 @@ main h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.custom-game-bar {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  color: #5755d9;
+  font-weight: 700;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 .owned-by-text {
