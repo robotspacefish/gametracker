@@ -88,8 +88,15 @@ class GamesController < ApplicationController
   get '/games/:slug/edit' do
     if logged_in?
       @game = Game.find_by_slug(params[:slug])
+      if @game.custom
+        erb :'/games/edit'
+      else
+        flash[:message] = "You cannot edit this title."
+        redirect "/games/#{params[:slug]}"
+      end
 
-      erb :'/games/edit'
+    else
+      redirect "/"
     end
   end
 
