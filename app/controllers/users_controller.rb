@@ -20,7 +20,10 @@ class UsersController < ApplicationController
 
         flash[:message] = "You must be logged in as #{@user.username} to view this page."
       else
-        flash[:message] = "User #{params[:slug]} does not exist. <a href=\"/signup\">Would you like to make an account with this name?</a></h2>"
+        flash[:message] = "User #{params[:slug]} does not exist."
+        if !logged_in?
+          flash[:message] += " <a href=\"/signup\">Would you like to make an account with this name?</a>"
+        end
       end
 
       redirect '/error'
