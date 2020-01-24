@@ -77,7 +77,6 @@ class UsersController < ApplicationController
         redirect to "#{current_user_page}/account"
       end
 
-
     end
   end
 
@@ -85,8 +84,14 @@ class UsersController < ApplicationController
     if !logged_in? || current_user.slug != params[:slug]
       redirect '/'
     else
+      # delete relationships with game_platforms
       UsersGamePlatform.delete_by_user_id(current_user.id)
+
+      # delete user
       current_user.delete
+
+      # clear session
+      logout!
 
       flash[:message] = "You have successfully deleted your account. Goodbye!"
 
