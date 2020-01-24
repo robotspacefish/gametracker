@@ -3,8 +3,8 @@ Rake::Task['import_platforms'].invoke
 # # create users
 User.create(username: "robotspacefish", password: "1234")
 
-30.times do
-  username = RandomUsername.username(:min_length => 6, :max_length => 8)
+10.times do
+  username = RandomUsername.username(:min_length => 6, :max_length => 12)
   if !User.find_by(username: username)
     User.create(
       username: username,
@@ -17,13 +17,13 @@ end
 games_group = [
 IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Hollow Knight")),
 IgdbApi.create_objects_from_parsed_data(IgdbApi.search("The Legend of Zelda")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Animal Crossing")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Overcooked")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Mass Effect")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Dragon Age")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Fallout")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Gears of War")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Elder Scrolls"))
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Animal Crossing")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Overcooked")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Mass Effect")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Dragon Age")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Fallout")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Gears of War")),
+# IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Elder Scrolls"))
 ]
 
 games_group.each do |games|
@@ -40,7 +40,7 @@ end
 # add games to users
 User.all.each do |user|
   if user.username != 'robotspacefish'
-    total_games = rand(20)
+    total_games = rand(5)
     total_games.times do
       game = Game.all.sample
       platform_index = rand(game.platforms.length)
