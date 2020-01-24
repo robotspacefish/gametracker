@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     games
   end
 
+  def total_unique_titles_owned
+    self.games.uniq.length
+  end
+
   def slug
     self.username.downcase
   end
