@@ -53,6 +53,7 @@ class UsersController < ApplicationController
           session[:username] = current_user.username
 
           flash[:message] = "You have successfully updated your username."
+          redirect to "#{current_user_page}/account"
         else
           flash[:message] = "That name is invalid."
           redirect to "#{current_user_page}/account"
@@ -70,6 +71,7 @@ class UsersController < ApplicationController
         current_user.update_password(params[:user][:password])
 
         flash[:message] = "You have successfully updated your password"
+        redirect to "#{current_user_page}/account"
       else
         flash[:message] = "That password is invalid."
         redirect to "#{current_user_page}/account"
