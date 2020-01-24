@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "s&M9V4CUEhoRu&hbfKdi#S70oXIx#EpiV%r%2ZH1m9ZI8%848Shcttd3xW#K"
+
   end
 
   get "/" do
@@ -52,17 +53,25 @@ class ApplicationController < Sinatra::Base
     end
 
     def signup(username, password)
-      if User.valid_username?(username) &&
-      !User.username_taken?(username) &&
-      User.valid_password?(password)
+      user = User.create(
+        username: username,
+        password: password
+      )
 
-        user = User.create(
-          username: username,
-          password: password
-        )
+      session[:username] = user.username
+    end
 
-        session[:username] = user.username
+    def can_sign_up?(username, password)
+      error = nil
+      if !User.valid_username?(username)
+        error = "Invalid username."
+      elsif User.username_taken?(username)
+        error = "Username already in use."
+      elsif !User.valid_password?(password)
+        error = "Invalid password."
       end
+
+      error
     end
 
     def field_is_blank?(field_value)

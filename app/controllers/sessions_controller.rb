@@ -35,23 +35,15 @@ class SessionsController < ApplicationController
 
   post '/signup' do
     username = nil
+    if error = can_sign_up?(params[:user][:username], params[:user][:password])
 
-    signup(params[:user][:username], params[:user][:password])
-
-    if logged_in?
-      redirect current_user_page
-    else
-      if !User.valid_username?(params[:user][:username])
-        flash[:message] = "Invalid username."
-      elsif User.username_taken?(params[:user][:username])
-        flash[:message] = "Username already in use."
-      elsif !User.valid_password?(params[:user][:password])
-        flash[:message] = "Invalid password."
-      else
-        flash[:message] = "There was a problem signing you up. Please try again."
-      end
+      flash[:message] = error
 
       redirect '/signup'
+    else
+      signup(params[:user][:username], params[:user][:password])
+
+      redirect current_user_page
     end
   end
 end
