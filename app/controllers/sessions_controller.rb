@@ -35,15 +35,10 @@ class SessionsController < ApplicationController
 
   post '/signup' do
     username = nil
-    if User.valid_username?(params[:user][:username]) &&
-      !User.username_taken?(params[:user][:username]) &&
-      User.valid_password?(params[:user][:password])
-      user = User.create(
-        username: params[:user][:username],
-        password: params[:user][:username]
-      )
 
-      session[:username] = user.username
+    signup(params[:user][:username], params[:user][:password])
+
+    if logged_in?
       redirect current_user_page
     else
       if !User.valid_username?(params[:user][:username])
