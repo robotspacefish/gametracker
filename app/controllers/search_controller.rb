@@ -7,10 +7,11 @@ class SearchController < ApplicationController
       game_objects = IgdbApi.create_objects_from_parsed_data(parsed_results)
 
       game_objects.each do |game|
-        if !Game.exists_in_db?(game[:igdb_id])
-          if game[:platforms] && !game[:platforms].empty?
-            Game.add_game_to_db(game)
-          end
+        # I only want to add games with platforms
+        if game[:platforms] &&
+          !game[:platforms].empty? &&
+          !Game.exists_in_db?(game[:igdb_id])
+          Game.add_game_to_db(game)
         end
       end
 
