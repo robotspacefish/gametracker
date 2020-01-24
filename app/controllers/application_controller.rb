@@ -51,6 +51,20 @@ class ApplicationController < Sinatra::Base
       "/users/#{current_user.slug}"
     end
 
+    def signup(username, password)
+      if User.valid_username?(username) &&
+      !User.username_taken?(username) &&
+      User.valid_password?(password)
+
+        user = User.create(
+          username: username,
+          password: password
+        )
+
+        session[:username] = user.username
+      end
+    end
+
     def field_is_blank?(field_value)
       field_value.blank?
     end
