@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   end
 
   def delete_game_from_library(platform_id, game_id)
-
     gp = GamePlatform.find_by_ids(platform_id, game_id)
     UsersGamePlatform.find_by_ids(self.id, gp.id).delete
   end
