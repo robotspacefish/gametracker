@@ -6,7 +6,7 @@ gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
 gem 'pry'
-gem 'bcrypt'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem "tux"
 gem 'json'
 gem 'rack-flash3'
