@@ -55,10 +55,10 @@ class Game < ActiveRecord::Base
     !!user.games.include?(self)
   end
 
-  def self.find_uniq_games_by_username(username)
-    user = User.find_by(username: username)
-    user.games.uniq
-  end
+  # def self.find_uniq_games_by_username(username)
+  #   user = User.find_by(username: username)
+  #   user.games.uniq
+  # end
 
   def self.exists_in_db?(igdb_id)
     !!Game.find_by(igdb_id: igdb_id)
