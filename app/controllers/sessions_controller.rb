@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  use Rack::Flash
+  use Rack::Flash, :sweep => true
 
   get '/login' do
     if !logged_in?
