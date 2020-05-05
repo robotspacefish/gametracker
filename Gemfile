@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'rack'
+
 gem 'sinatra'
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
@@ -23,4 +25,8 @@ group :test do
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'pg'
 end
