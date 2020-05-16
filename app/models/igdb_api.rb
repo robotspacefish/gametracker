@@ -7,7 +7,7 @@ class IgdbApi
     http.use_ssl = true
     path = 'https://api-v3.igdb.com/search'
 
-    request = Net::HTTP::Post.new(URI(path), {'user-key' => $api_key})
+    request = Net::HTTP::Post.new(URI(path), {'user-key' => ENV[API_KEY])
 
     request.body = "fields game.name, game.platforms.name, game.cover.url, game.cover.height, game.cover.width, game.cover.image_id, game.url, game.summary, game.slug; search \"#{game_title}\"; limit 50;"
 
@@ -36,7 +36,7 @@ class IgdbApi
     http = Net::HTTP.new('api-v3.igdb.com',443)
     http.use_ssl = true
     path = 'https://api-v3.igdb.com/platforms'
-    request = Net::HTTP::Post.new(URI(path), {'user-key' => $api_key})
+    request = Net::HTTP::Post.new(URI(path), {'user-key' => ENV[API_KEY]})
 
     request.body = 'fields abbreviation, name, slug; limit 500;'
 
