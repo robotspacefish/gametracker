@@ -9,8 +9,7 @@ class GamesController < ApplicationController
     puts 'presorted:'
     puts pre_sorted_games
     puts '------------------------------'
-      # @games = Game.sort_array_by_title(pre_sorted_games)
-      @games = Game.all
+      @games = Game.sort_array_by_title(pre_sorted_games)
     puts '@games:'
     puts @games
       erb :'games/index'
