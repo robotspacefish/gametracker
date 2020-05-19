@@ -117,11 +117,8 @@ class Game < ActiveRecord::Base
   end
 
   def self.find_search_results(game_title)
-    puts "%#{game_title}%"
-    games = Game.where("title ILIKE ?", "%#{game_title}%")
-    puts "search results:"
-    puts games
-    games
+    # if using sqlite, change ILIKE to LIKE
+    Game.where("title ILIKE ?", "%#{game_title}%")
   end
 
   def owned_by_any_users?
