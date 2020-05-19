@@ -8,7 +8,8 @@ class GamesController < ApplicationController
       pre_sorted_games = Game.find_all_owned_game_titles
 
     puts pre_sorted_games
-      @games = Game.sort_array_by_title(pre_sorted_games)
+      # @games = Game.sort_array_by_title(pre_sorted_games)
+      @games = Game.all
     puts @games
       erb :'games/index'
     end
