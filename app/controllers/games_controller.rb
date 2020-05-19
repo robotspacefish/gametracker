@@ -6,10 +6,12 @@ class GamesController < ApplicationController
       redirect '/login'
     else
       pre_sorted_games = Game.find_all_owned_game_titles
-
+    puts 'presorted:'
     puts pre_sorted_games
+    puts '------------------------------'
       # @games = Game.sort_array_by_title(pre_sorted_games)
       @games = Game.all
+    puts '@games:'
     puts @games
       erb :'games/index'
     end
