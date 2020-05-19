@@ -117,6 +117,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.find_search_results(game_title)
+    puts "%#{game_title}%"
     games = Game.where("title LIKE ?", "%#{game_title}%")
     puts "search results:"
     puts games
