@@ -93,11 +93,11 @@ class User < ActiveRecord::Base
 
   def update_username(new_username)
     self.update(username: new_username)
-    self.save
+    # self.save
   end
 
   def update_password(new_password)
     self.update(password: new_password)
-    self.save
+    # self.save
   end
 end

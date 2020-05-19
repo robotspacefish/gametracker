@@ -28,10 +28,15 @@ class Game < ActiveRecord::Base
   end
 
   def self.find_all_owned_game_titles
+    # only return the game_platforms once,
+    # not for every user that owns the same relationship
     game_platform_ids = UsersGamePlatform.all.collect do |ugp|
       ugp.game_platform_id
     end.uniq
 
+    # only return the unique game titles
+    # without .uniq it would return a game for each
+    # game_platform relationship
     games = game_platform_ids.collect do |gp_id|
       gp = GamePlatform.find(gp_id)
       Game.find(gp.game_id)
@@ -55,19 +60,33 @@ class Game < ActiveRecord::Base
     !!user.games.include?(self)
   end
 
-  # def self.find_uniq_games_by_username(username)
-  #   user = User.find_by(username: username)
-  #   user.games.uniq
-  # end
+  def cover_art
+    self.game_images.find_by(image_type: "cover_art")
+  end
+
+  def self.find_search_results(game_title)
+    Game.where("title LIKE ?", "%#{game_title}%")
+  end
+
+  def owned_by_any_users?
+    self.game_platforms.any? do |gp|
+      UsersGamePlatform.find_by(game_platform_id: gp.id)
+    end
+  end
 
   def self.exists_in_db?(igdb_id)
     !!Game.find_by(igdb_id: igdb_id)
   end
 
-  def self.create_custom_game(g_hash)
-    game = Game.create(title: g_hash[:title], summary: g_hash[:summary], custom: g_hash[:custom])
-    platform = Platform.find(g_hash[:platform_id])
-    game.platforms << platform
+  def self.add_game_to_db(g)
+    game = self.create_game(g)
+
+    if g[:cover_art]
+      self.create_game_images_for_game(game, g[:cover_art], "cover_art")
+    end
+
+    self.add_platforms_to_game(game, g[:platforms])
+
     game
   end
 
@@ -81,7 +100,6 @@ class Game < ActiveRecord::Base
   end
 
   def self.create_game_images_for_game(game, image_hash, image_type)
-
     url_show = image_hash["url"].gsub("thumb", "cover_big")
     images = GameImage.create(
       image_type: image_type,
@@ -100,30 +118,10 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def self.add_game_to_db(g)
-    game = self.create_game(g)
-
-    if g[:cover_art]
-      self.create_game_images_for_game(game, g[:cover_art], "cover_art")
-    end
-
-    self.add_platforms_to_game(game, g[:platforms])
-
+   def self.create_custom_game(g_hash)
+    game = Game.create(title: g_hash[:title], summary: g_hash[:summary], custom: g_hash[:custom])
+    platform = Platform.find(g_hash[:platform_id])
+    game.platforms << platform
     game
-  end
-
-  def cover_art
-    self.game_images.find_by(image_type: "cover_art")
-  end
-
-  def self.find_search_results(game_title)
-    # if using sqlite, change ILIKE to LIKE
-    Game.where("title ILIKE ?", "%#{game_title}%")
-  end
-
-  def owned_by_any_users?
-    self.game_platforms.any? do |gp|
-      UsersGamePlatform.find_by(game_platform_id: gp.id)
-    end
   end
 end

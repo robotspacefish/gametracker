@@ -38,8 +38,8 @@ class IgdbApi
     path = 'https://api-v3.igdb.com/platforms'
     request = Net::HTTP::Post.new(URI(path), {'user-key' => ENV['API_KEY']})
 
-    request.body = 'fields abbreviation, name, slug; limit 500;'
-
+    # request.body = 'fields abbreviation, name, slug; limit 500;'
+    request.body = 'fields name; limit 500;'
     JSON.parse(http.request(request).body)
   end
 end

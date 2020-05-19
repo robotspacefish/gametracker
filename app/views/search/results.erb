@@ -1,11 +1,17 @@
   <h2 class="page-title">Search Results</h2>
 
   <% if @search_results && !@search_results.empty? %>
+
     <section class="games-container">
+
       <% @search_results.each do |game| %>
         <%= erb :'/partials/_game_card', locals: { game: game } %>
       <% end %>
+
     </section>
+
   <% else %>
+
     <h2>No Results</h2>
+
   <% end %>

@@ -1,5 +1,6 @@
 
     <%= erb :'/partials/_flash'%>
+
     <div class="games-container">
 
       <%= erb :'/partials/_game_card', locals: { game: @existing_game, platforms: @existing_game.platforms } %>

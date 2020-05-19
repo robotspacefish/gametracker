@@ -2,12 +2,10 @@ class UsersController < ApplicationController
   use Rack::Flash
 
   get '/users' do
-   if !logged_in?
-    redirect '/login'
-   else
-      @users = User.all.order(:username)
-      erb :'users/index'
-   end
+    redirect_if_not_logged_in
+    @users = User.all.order(:username)
+    erb :'users/index'
+
   end
 
   get '/users/:slug' do
@@ -31,9 +29,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/account' do
-    if !logged_in?
-      redirect '/'
-    elsif current_user.slug != params[:slug]
+    redirect_if_not_logged_in
+
+    if current_user.slug != params[:slug]
       redirect to "#{current_user_page}/account"
     else
       erb :'/users/account'
@@ -41,46 +39,47 @@ class UsersController < ApplicationController
   end
 
   patch '/users/:slug/account/update_username' do
-    if !logged_in?
-      redirect '/'
-    else
-      if current_user.should_update_username?(params[:user][:username])
+    redirect_if_not_logged_in
 
-        if User.can_update_username?(params[:user][:username])
+    if current_user.should_update_username?(params[:user][:username])
 
-          current_user.update_username(params[:user][:username])
+      if User.can_update_username?(params[:user][:username])
 
-          session[:username] = current_user.username
+        current_user.update_username(params[:user][:username])
 
-          flash[:message] = "You have successfully updated your username."
-          redirect to "#{current_user_page}/account"
-        else
-          flash[:message] = "That name is invalid."
-          redirect to "#{current_user_page}/account"
-        end
+        session[:username] = current_user.username
+
+        flash[:message] = "You have successfully updated your username."
+
+      else
+        flash[:message] = "That name is invalid."
       end
+    else
+      flash[:message] = "Enter a different username if you want to change it."
     end
+
+    redirect to "#{current_user_page}/account"
+
   end
 
   patch '/users/:slug/account/update_password' do
-    if !logged_in?
-      redirect '/'
+    redirect_if_not_logged_in
+
+    if !field_is_blank?(params[:user][:password]) && User.can_update_password?(params[:user][:password])
+
+      current_user.update_password(params[:user][:password])
+
+      flash[:message] = "You have successfully updated your password"
+      redirect to "#{current_user_page}/account"
     else
-      if !field_is_blank?(params[:user][:password]) && User.can_update_password?(params[:user][:password])
-
-        current_user.update_password(params[:user][:password])
-
-        flash[:message] = "You have successfully updated your password"
-        redirect to "#{current_user_page}/account"
-      else
-        flash[:message] = "That password is invalid."
-        redirect to "#{current_user_page}/account"
-      end
-
+      flash[:message] = "That password is invalid."
+      redirect to "#{current_user_page}/account"
     end
+
   end
 
   delete '/users/:slug/account' do
+
     if !logged_in? || current_user.slug != params[:slug]
       redirect '/'
     else
@@ -106,7 +105,8 @@ class UsersController < ApplicationController
       current_user.delete_game_from_library(params[:game][:platform_id], params[:game][:game_id])
 
       flash[:message] = "#{params[:game][:title]} for #{params[:game][:platform_name]} was removed."
-      redirect '/'
+
+      redirect to current_user_page
     end
   end
 end

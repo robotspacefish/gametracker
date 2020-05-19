@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
   post '/login' do
     login(params[:user])
+
     if !logged_in?
 
       flash[:message] = "There was a problem logging you in. Make sure you have the correct username and password."
@@ -34,7 +35,6 @@ class SessionsController < ApplicationController
   end
 
   post '/signup' do
-    username = nil
     if error = can_sign_up?(params[:user][:username], params[:user][:password])
 
       flash[:message] = error

@@ -3,20 +3,20 @@ Rake::Task['import_platforms'].invoke
 # # create users
 User.create(username: "robotspacefish", password: "1234")
 
-10.times do
-  username = RandomUsername.username(:min_length => 6, :max_length => 12)
-  if !User.find_by(username: username)
-    User.create(
-      username: username,
-      password: "1234"
-    )
-  end
-end
+# 10.times do
+#   username = RandomUsername.username(:min_length => 6, :max_length => 12)
+#   if !User.find_by(username: username)
+#     User.create(
+#       username: username,
+#       password: "1234"
+#     )
+#   end
+# end
 
 # # add games to db
 games_group = [
 IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Hollow Knight")),
-IgdbApi.create_objects_from_parsed_data(IgdbApi.search("The Legend of Zelda")),
+IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Dragon Quest Builders")),
 # IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Animal Crossing")),
 # IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Overcooked")),
 # IgdbApi.create_objects_from_parsed_data(IgdbApi.search("Mass Effect")),
