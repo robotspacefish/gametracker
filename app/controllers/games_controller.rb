@@ -31,7 +31,7 @@ class GamesController < ApplicationController
       redirect '/games/new'
     else
       # check db for game
-      if @existing_game = Game.where("title LIKE ?", title)[0]
+      if @existing_game = Game.where("title ILIKE ?", title)[0]
         flash[:message] = "This game already exists."
 
         if !!current_user.games.find_by(id: @existing_game.id)

@@ -65,7 +65,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.find_search_results(game_title)
-    Game.where("title LIKE ?", "%#{game_title}%")
+    Game.where("title ILIKE ?", "%#{game_title}%")
   end
 
   def owned_by_any_users?
